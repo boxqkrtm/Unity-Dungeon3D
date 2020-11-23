@@ -150,7 +150,7 @@ public class Quest
         get
         {
             var result = "";
-            Debug.Log(QuestType.ToString());
+            //Debug.Log(QuestType.ToString());
             switch (QuestType)
             {
                 case QuestType.ItemCollect:

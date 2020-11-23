@@ -49,6 +49,7 @@ public class ShopBuyAlert : MonoBehaviour
 
                 AlertManager.Instance.AddGameLog("구입 성공");
                 InventoryManager.Instance.PlayerScript.ud.Gold -= totalPrice;
+                buyItem.ItemAmount = amount;
                 InventoryManager.Instance.GetItem(buyItem);
                 transform.GetChild(0).gameObject.SetActive(false);
             }

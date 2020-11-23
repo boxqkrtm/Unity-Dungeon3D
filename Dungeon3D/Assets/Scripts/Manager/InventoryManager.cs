@@ -158,7 +158,7 @@ public class InventoryManager : MonoBehaviour
     }
     public void SplitItem(int a, int b)
     {
-        Debug.Log("Split");
+        //Debug.Log("Split");
         if (PlayerItems[b].ItemCode == 0)
         {
             var halfV = PlayerItems[a].ItemAmount / 2;
@@ -257,7 +257,9 @@ public class InventoryManager : MonoBehaviour
     //int는 들어가지 못한 아이템의 수량 반환 ex 1 = 1개 아이템창 들어가기 실패
     public bool TestGetItem(Item getItem)
     {
-        var copiedInv = new List<Item>(PlayerItems); //깊은 복사 참조
+        var copiedInv = new List<Item>(); //깊은 복사 참조
+        foreach(var i in PlayerItems)
+            copiedInv.Add(new Item(i));
         if (GetItem(getItem, false, copiedInv) == 0)
         {
             return true;
@@ -266,7 +268,12 @@ public class InventoryManager : MonoBehaviour
     }
     public int GetItem(Item getItem, bool alert = true, List<Item> playerInv = null)
     {
-        if (playerInv == null) playerInv = PlayerScript.ud.Items;
+        if (playerInv == null) 
+        {
+            Debug.Log("Player");
+            playerInv = PlayerScript.ud.Items;
+            Debug.Log("아이템 " + getItem.ItemAmount + "개 들어옴");
+        }
         Item item = new Item(getItem);
         if (item.ItemAmount == 0) { Debug.LogError("에러 아이템이 없음"); return 0; }
         var remainItemAmount = item.ItemAmount;
@@ -281,21 +288,21 @@ public class InventoryManager : MonoBehaviour
                 {
                     //아이템 코드가 같으면서 스택할 공간이 있는 경우
                     var spaceAmount = playerInv[i].ItemMaxAmount - playerInv[i].ItemAmount;//빈 공간 개수 계산
-                    //Debug.Log(i.ToString() + " " + playerInv[i].ItemAmount.ToString()+"합칠 공간의 남은 공간" + spaceAmount.ToString()) ;
+                    Debug.Log(i.ToString() + " " + playerInv[i].ItemAmount.ToString()+"합칠 공간의 남은 공간" + spaceAmount.ToString()) ;
                     if (spaceAmount >= remainItemAmount)
                     {
                         playerInv[i].ItemAmount += remainItemAmount;
-                        //Debug.Log( "아이템이 완전히 합쳐짐");
+                        Debug.Log( "아이템이 완전히 합쳐짐");
                         UIUpdate();
                         if (alert) AlertManager.Instance.AddGameLog(item.ItemName + " " + item.ItemAmount + "개 획득");
                         return 0;
                     }
                     else
                     {
-                        //Debug.Log("아이템 하나를 합치고 새 아이템을 놓아야함");
+                        Debug.Log("아이템 하나를 합치고 새 아이템을 놓아야함");
                         //아이템 한개를 스택을 가득 채움
                         remainItemAmount -= spaceAmount;
-                        playerInv[i].ItemAmount = playerInv[i].ItemMaxAmount;
+                        playerInv[i].ItemAmount = spaceAmount;
                     }
                 }
             }
@@ -306,7 +313,7 @@ public class InventoryManager : MonoBehaviour
         {
             if (playerInv[i].ItemCode == 0)
             {
-                //Debug.Log("빈 공간에 나머지 아이템을 추가해서 넣음");
+                Debug.Log("빈 공간에 나머지 아이템을 추가해서 넣음");
                 var temp = new Item(item);
                 if (remainItemAmount > temp.ItemMaxAmount)
                 {
@@ -376,7 +383,7 @@ public class InventoryManager : MonoBehaviour
             if (targetItem.ResistIce > 0)
                 result += "\n냉기저항 : " + targetItem.ResistIce.ToString();
             if (targetItem.ResistLight > 0)
-                result += "\n빛저항 : " + targetItem.ResistLight.ToString();
+                result += "\n전기저항 : " + targetItem.ResistLight.ToString();
             if (targetItem.ResistPoison > 0)
                 result += "\n독저항 : " + targetItem.ResistPoison.ToString();
         }

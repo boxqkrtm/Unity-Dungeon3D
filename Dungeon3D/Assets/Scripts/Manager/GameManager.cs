@@ -274,7 +274,12 @@ public class GameManager : MonoBehaviour
     {
         var dg = GameObject.Find("DungeonGenerator").GetComponent<MapGenerator>();
         dg.floor += 1;
-        dg.GenerateFloor();
+        if(dg.floor == 6)
+        {
+            MoveScene("DungeonBoss", Vector3.zero);
+        }
+        else
+            dg.GenerateFloor();
 
     }
 
