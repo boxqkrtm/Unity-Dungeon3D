@@ -508,7 +508,7 @@ MonoBehaviour:
     maxMp: 100
     lv: 3
     atk: 49
-    def: 13
+    def: 0
     resistFire: 63
     resistIce: 0
     resistLight: 0
@@ -520,6 +520,8 @@ MonoBehaviour:
     isEnemy: 1
     gold: 15
     itemCodeAmount:
+    - itemCode: 3
+      itemAmount: 1
     - itemCode: 3
       itemAmount: 2
     buffs: []

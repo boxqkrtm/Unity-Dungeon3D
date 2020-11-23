@@ -10,7 +10,7 @@ public class DroppedItem : MonoBehaviour
     Item itemData;
     public void SetItem(Item item)
     {
-        itemData = item;
+        itemData = new Item(item);
         transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = itemData.ItemIcon;
     }
     private void Start()
@@ -19,13 +19,17 @@ public class DroppedItem : MonoBehaviour
             SetItem(ItemManager.Instance.CodeToItem(manualItemCode));
     }
 
+    void Update()
+    {
+        if (itemData.ItemAmount == 0) Destroy(gameObject);
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             itemData.ItemAmount = InventoryManager.Instance.GetItem(itemData);
             //Debug.Log("hit remain " + itemData.ItemAmount);
-            if (itemData.ItemAmount == 0) Destroy(gameObject);
         }
     }
 }

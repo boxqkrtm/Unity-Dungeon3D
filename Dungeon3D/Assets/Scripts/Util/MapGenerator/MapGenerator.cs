@@ -32,7 +32,6 @@ public class MapGenerator : MonoBehaviour
     }
     public void GenerateFloor()
     {
-        //ai 네비게이션 갱신이 필요 할 수 있음
         StartCoroutine(SlowMapGen());
     }
 
@@ -51,7 +50,7 @@ public class MapGenerator : MonoBehaviour
         var nowFloor = floor;
         ClearFloor();
         int mapCount = 3 + nowFloor;
-        mapCount = mapCount > 20 ? 20 : mapCount;
+        mapCount = mapCount > 10 ? 10 : mapCount;
         var rooms = new List<Room>();
 
         //랜덤한 크기의 방 생성
@@ -86,7 +85,8 @@ public class MapGenerator : MonoBehaviour
         //방 연결하기
         for (int i = 0; i < rooms.Count - 1; i++)
         {
-            var a = i; var b = i + 1;
+            var a = i; 
+            var b = i + 1;
             if (rooms[a].isConnected == false || rooms[b].isConnected == false)
                 ConnectRoom(rooms[a], rooms[b], rooms);
         }
@@ -191,11 +191,8 @@ public class MapGenerator : MonoBehaviour
         //스폰 룸 지정 및 플레이어 좌표 설정
         var startRoomIndex = Random.Range(0, rooms.Count);
         GameManager.Instance.PlayerObj.transform.position = new Vector3(rooms[startRoomIndex].Center.x * floorSize, 0, rooms[startRoomIndex].Center.y * floorSize);
-        if (floor % 5 == 1)
-        {
-            var a = Instantiate(startDoor);
-            a.transform.position = new Vector3(rooms[startRoomIndex].Center.x * floorSize, 0, rooms[startRoomIndex].Center.y * floorSize - 1 * floorSize);
-        }
+        var e = Instantiate(startDoor);
+        e.transform.position = new Vector3(rooms[startRoomIndex].Center.x * floorSize, 0, rooms[startRoomIndex].Center.y * floorSize - 1 * floorSize);
 
 
         //플레이어 활성화
@@ -224,9 +221,7 @@ public class MapGenerator : MonoBehaviour
             for (var j = 0; j < Random.Range(1,3); j++)
             {
                 var mob = Instantiate(mobList[Random.Range(0, mobList.Count)]);
-                var max = new Vector2(rooms[roomIndexList[i]].size.x * 2, rooms[roomIndexList[i]].size.y * 2);
-                mob.transform.position = new Vector3(nowRoomsCenter.x * floorSize + Random.Range(-max.x, max.x) * floorSize, 0
-                , nowRoomsCenter.y * floorSize + Random.Range(-max.y, max.y) * floorSize);
+                mob.transform.position = rooms[roomIndexList[i]].RandomInnerPos() * floorSize;
                 if (mob.GetComponent<NavMeshAgent>() != null)
                 {
                     mob.GetComponent<NavMeshAgent>().enabled = true;
@@ -250,15 +245,13 @@ public class MapGenerator : MonoBehaviour
         {
             var nowRoomsCenter = rooms[roomIndexList[i]].Center;
             var itembox = Instantiate(chest);
-            var max = new Vector2(rooms[roomIndexList[i]].size.x / 2-1, rooms[roomIndexList[i]].size.y / 2-1);
             var items = new List<Item>();
             items.Add(ItemManager.Instance.CodeToItem(Random.Range(1, 6)));
-            if(Random.Range(0,2) == 0) items.Add(ItemManager.Instance.CodeToItem(Random.Range(1, 6)));
-            if(Random.Range(0,2) == 0) items.Add(ItemManager.Instance.CodeToItem(Random.Range(1, 6)));
-            if(Random.Range(0,2) == 0) items.Add(ItemManager.Instance.CodeToItem(Random.Range(1, 6)));
+            if(Random.Range(0,2) == 0) items.Add(ItemManager.Instance.CodeToItem(Random.Range(4, 10)));
+            if(Random.Range(0,2) == 0) items.Add(ItemManager.Instance.CodeToItem(Random.Range(4, 10)));
+            if(Random.Range(0,2) == 0) items.Add(ItemManager.Instance.CodeToItem(Random.Range(4, 10)));
             itembox.GetComponent<DungeonChest>().Items = items;
-            itembox.transform.position = new Vector3(nowRoomsCenter.x * floorSize + Random.Range(-max.x, max.x) * floorSize, 0
-            , nowRoomsCenter.y * floorSize + Random.Range(-max.y, max.y) * floorSize);
+            itembox.transform.position =  rooms[roomIndexList[i]].RandomInnerPos() * floorSize;
         }
         //계단 설치하기 플레이어 스폰지점 제외
         var rand = Random.Range(0, rooms.Count);

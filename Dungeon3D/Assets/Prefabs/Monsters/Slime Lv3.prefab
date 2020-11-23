@@ -507,9 +507,8 @@ MonoBehaviour:
     maxHp: 60
     maxMp: 100
     lv: 3
-    gold: 15
     atk: 15
-    def: 8
+    def: 0
     resistFire: 63
     resistIce: 0
     resistLight: 0
@@ -519,6 +518,7 @@ MonoBehaviour:
     acc: 1
     avd: 0
     isEnemy: 1
+    gold: 15
     itemCodeAmount:
     - itemCode: 3
       itemAmount: 2
@@ -543,6 +543,7 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   state: 0
   player: {fileID: 0}
+  sight: 5
 --- !u!1001 &8395839890070961075
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -71,4 +71,32 @@ public class Room
         if (coord.x < minCoord.x) coord.x = minCoord.x;
         if (coord.y < minCoord.y) coord.y = minCoord.y;
     }
+    
+    bool[,] innerTable;
+    bool[,] InnerTable{get{
+        if(innerTable == null) 
+        {
+            innerTable = new bool[size.y-2,size.x-2];
+            for (int i = 0; i < size.y-2; i++)
+                for (int j = 0; j < size.x-2; j++)
+                innerTable[i,j] = false;
+        } 
+            return innerTable;
+        } 
+        set{innerTable = value;}
+    }
+
+    public Vector3 RandomInnerPos()
+    {
+        while (true)
+        {
+            var randy = Random.Range(0, size.y-2);
+            var randx = Random.Range(0, size.x-2);
+            if(InnerTable[randy, randx] == false)
+            {
+                InnerTable[randy, randx] = true;
+                return new Vector3(coord.x+1 + randx,0, coord.y+1 + randy);
+            }
+        }
+    }
 }

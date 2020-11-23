@@ -4359,24 +4359,18 @@ MonoBehaviour:
     maxMp: 150
     lv: 5
     atk: 69
-    def: 10
+    def: 5
     resistFire: 5
     resistIce: 0
     resistLight: 0
     resistPoison: 0
-    naturalHeal: 8
+    naturalHeal: 4
     speed: 1
     acc: 1
     avd: 0
     isEnemy: 1
     gold: 18
-    itemCodeAmount:
-    - itemCode: 8
-      itemAmount: 1
-    - itemCode: 1
-      itemAmount: 1
-    - itemCode: 0
-      itemAmount: 0
+    itemCodeAmount: []
     buffs: []
     quests: []
   animator: {fileID: 0}
