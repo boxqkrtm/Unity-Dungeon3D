@@ -1,0 +1,4 @@
+id,name,description,questType,questItemId,questAmount,limitLvMin,limitLvMax,npcKind,exp,gold,itemCode,아이템이름 주석,itemAmount,questNpc
+0,불의 정수 3개 수집,슬라임을 잡아 불의 정수 3개 수집해서 마을 개 상인에게 가져다주자,ItemCollect,3,3,1,99,DogNpc,5,10,2,낡은 갑옷,1,DogNpc
+1,동굴안 스켈레톤 1마리 토벌,마을의 서쪽에 있는 동굴의 스켈레톤을 1마리 잡아라,KillSkeleton,0,1,3,99,DogNpc,20,100,7,회복포션,10,DogNpc
+2,동굴안 스켈레톤 10마리 토벌,마을의 서쪽에 있는 동굴의 스켈레톤을 10마리 잡아라,KillSkeleton,0,10,3,99,DogNpc,220,1200,8,신속포션,30,DogNpc
