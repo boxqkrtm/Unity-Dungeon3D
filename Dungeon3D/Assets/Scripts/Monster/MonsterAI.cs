@@ -5,7 +5,7 @@ using UnityEngine;
 #pragma warning disable CS0108 // 멤버가 상속된 멤버를 숨깁니다. new 키워드가 없습니다.
 public enum MonsterAIState
 {
-    Idle, Chase, Attack, RandomMove
+    Idle, Chase, Attack, RandomMove, BossSkill
 }
 public class MonsterAI : MonoBehaviour
 {
@@ -68,6 +68,7 @@ public class MonsterAI : MonoBehaviour
         else if (state == MonsterAIState.Chase) Chase();
         else if (state == MonsterAIState.Attack) Attack();
         else if (state == MonsterAIState.RandomMove) RandomMove();
+        else if (state == MonsterAIState.BossSkill) BossSkill();
     }
 
     virtual public void OnDead() { }
@@ -75,4 +76,5 @@ public class MonsterAI : MonoBehaviour
     virtual public void Chase() { }
     virtual public void Attack() { }
     virtual public void RandomMove() { }
+    virtual public void BossSkill() { }
 }
