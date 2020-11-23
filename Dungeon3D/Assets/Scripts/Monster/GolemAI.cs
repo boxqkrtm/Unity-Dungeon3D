@@ -82,9 +82,9 @@ public class GolemAI : MonsterAI
         }
         else
         {
-            if (BossSkillRoutine != null)
+            if (BossSkillRoutine == null)
                 BossSkillRoutine = StartCoroutine(BossSkillMissile());
-            if (BossAroundDamageRoutine != null)
+            if (BossAroundDamageRoutine == null)
                 BossAroundDamageRoutine = StartCoroutine(BossAroundDamage());
         }
     }
