@@ -14,7 +14,7 @@ public class EffectManager : MonoBehaviour
     public GameObject hitFireEffect;
     public GameObject dashBoostEffect;
     public GameObject droppedItem;
-    public float itemDropPower = 1f;
+    float itemDropPower = 8f;
 
     private static EffectManager instance = null;
     public static EffectManager Instance
@@ -87,7 +87,7 @@ public class EffectManager : MonoBehaviour
         dr.GetComponent<DroppedItem>().SetItem(item);
         var power = Quaternion.Euler(Random.Range(-90f, 90f), Random.Range(0, 360f), 0) * Vector3.up * itemDropPower;
         dr.GetComponent<Rigidbody>().AddForce(power, ForceMode.VelocityChange);
-        Debug.Log(power);
+        //Debug.Log(power);
     }
 
     public void StopEffect(float time = 0.09f)

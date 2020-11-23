@@ -6,7 +6,8 @@ public class DungeonChest : MonoBehaviour
 {
     public List<int> manualItemCodes = new List<int>();
     public bool isManualSpawn = false;
-    public List<Item> items;
+    public List<Item> Items{get => items; set=>items = value;}
+    List<Item> items;
 
     void OnCollisionEnter(Collision c)
     {

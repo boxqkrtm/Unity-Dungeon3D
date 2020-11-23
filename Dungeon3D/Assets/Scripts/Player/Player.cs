@@ -136,6 +136,16 @@ public class Player : MonoBehaviour
                 if (mon?.GetComponent<Monster>()?.ud.Hp == 0) continue;
                 if (Mathf.Abs(mon.transform.position.y - transform.position.y) >= 1f) continue;
                 if (Vector3.Distance(mon.transform.position, transform.position) > minTargetDisTance) continue;
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.forward, out hit, 15f))
+                {
+                    Debug.Log("hit");
+                }
+                else
+                {
+                    Debug.Log("no hit");
+                    continue;
+                }
 
                 //추적 할 타겟 설정
                 DashSkillminTarget = mon;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// 모든 몬스터의 공통 스크립트, 데미지를 입거나 사망처리 관리
@@ -13,7 +14,7 @@ public class Monster : MonoBehaviour
     public Animator animator;
     Collider myCol;
     public Image hpBar;
-    public Text monsterNameText;
+    public TextMeshProUGUI monsterNameText;
     GameObject player;
     Rigidbody rb;
 
@@ -23,7 +24,7 @@ public class Monster : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         var monCanvas = transform.Find("SimpleMobInfoCanvas");
         hpBar = monCanvas.Find("HP").GetComponent<Image>();
-        monsterNameText = monCanvas.Find("NAME").GetComponent<Text>();
+        monsterNameText = monCanvas.Find("NAME").GetComponent<TextMeshProUGUI>();
         monsterNameText.text = ud.Name + " Lv" + ud.Lv.ToString();
         player = GameManager.Instance.PlayerObj;
         myCol = GetComponent<Collider>();
@@ -39,6 +40,7 @@ public class Monster : MonoBehaviour
         {
             yield return null;
             ud.buffLoop(gameObject);
+            monsterNameText.text = ud.Name + " Lv" + ud.Lv.ToString();
         }
     }
 
@@ -86,7 +88,7 @@ public class Monster : MonoBehaviour
         Vector3 dir = (transform.position - player.transform.position).normalized;
         //랜덤 계산에서 데미지가 더 많이 들어갔을 수록 데미지를 더 크게 표시함
         EffectManager.Instance.CreateHitDamageText(transform.position, damage, effective >= 1.15 ? effective * 2 : effective);
-        GetComponent<Rigidbody>().AddForce(dir * 100000f);
+        GetComponent<Rigidbody>().AddForce(dir * 10000f);
         ud.Hp -= damage;
     }
 }

@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 3487536539306058454}
   - component: {fileID: 2857443395124264524}
   - component: {fileID: 6084031141214103391}
+  - component: {fileID: 7917108899369622330}
   m_Layer: 0
   m_Name: MoveStair
   m_TagString: StairTile
@@ -199,3 +200,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.020131359, y: 0.020516083, z: 0.020193141}
   m_Center: {x: 0.000016145408, y: -0.000036479898, z: -0.000025036275}
+--- !u!208 &7917108899369622330
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3127402980868342531}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.010000001, y: 0.010000001, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

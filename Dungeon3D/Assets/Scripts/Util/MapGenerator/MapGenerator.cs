@@ -11,6 +11,8 @@ public class MapGenerator : MonoBehaviour
     public GameObject wallTile;
     public GameObject stair;
     public GameObject startDoor;
+    public GameObject chest;
+    public GameObject torchWall;
     public Image loadBar;
     public Text loadText;
     public GameObject loadingUI;
@@ -49,7 +51,7 @@ public class MapGenerator : MonoBehaviour
         var nowFloor = floor;
         ClearFloor();
         int mapCount = 3 + nowFloor;
-        mapCount = mapCount > 30 ? 30 : mapCount;
+        mapCount = mapCount > 20 ? 20 : mapCount;
         var rooms = new List<Room>();
 
         //랜덤한 크기의 방 생성
@@ -96,10 +98,12 @@ public class MapGenerator : MonoBehaviour
         var navList = new List<NavMeshSurface>();
         for (int y = 0; y < maxMapSize; y++)
         {
+            bool hasTile = false;
             for (int x = 0; x < maxMapSize; x++)
             {
                 if (map[y, x] == 1)
                 {
+                    hasTile = true;
                     var abc = Instantiate(floorTile);
                     abc.transform.position = new Vector3(x * 2, 0, y * 2);
                     abc.transform.localScale = Vector3.one;
@@ -107,7 +111,7 @@ public class MapGenerator : MonoBehaviour
                     navList.Add(abc.GetComponent<NavMeshSurface>());
                 }
             }
-            if (frame++ % renderFrameSkip == 0)
+            if (frame++ % renderFrameSkip == 0 && hasTile == true)
             {
                 yield return null;
                 var progress = (float)y / maxMapSize / 2;
@@ -117,18 +121,25 @@ public class MapGenerator : MonoBehaviour
         }
         var xdelta = new int[4] { 0, -1, 0, +1 };
         var ydelta = new int[4] { -1, 0, +1, 0 };
+        var wallCnt = 0;
         for (int y = 0; y < maxMapSize; y++)
         {
+            bool hasTile = false;
             for (int x = 0; x < maxMapSize; x++)
             {
                 //타일 상하좌우로 비어있는 영역의 방향 탐색 후 벽 설치
                 if (map[y, x] == 1)
                 {
+                    hasTile = true;
                     for (var i = 0; i < 4; i++)
                     {
                         if (map[y + ydelta[i], x + xdelta[i]] == 0)
                         {
-                            var abc = Instantiate(wallTile);
+                            GameObject abc;
+                            if(wallCnt++ % 10 == 0)
+                                abc = Instantiate(torchWall);
+                            else
+                                abc = Instantiate(wallTile);
                             abc.transform.position = new Vector3(x * 2, 0, y * 2);
                             abc.transform.localScale = Vector3.one * 100;
                             abc.transform.rotation = Quaternion.Euler(-90f, 0, 0);
@@ -137,11 +148,12 @@ public class MapGenerator : MonoBehaviour
                                 //하
                                 case 0:
                                     abc.transform.position = new Vector3(x * 2, 0, y * 2 - 1);
+                                    abc.transform.rotation = Quaternion.Euler(-90f, -180f, 0);
                                     break;
                                 //좌
                                 case 1:
                                     abc.transform.position = new Vector3(x * 2 - 1, 0, y * 2);
-                                    abc.transform.rotation = Quaternion.Euler(-90f, 90f, 0);
+                                    abc.transform.rotation = Quaternion.Euler(-90f, -90f, 0);
                                     break;
                                 //상 //3D기준 앞
                                 case 2:
@@ -157,7 +169,7 @@ public class MapGenerator : MonoBehaviour
                     }
                 }
             }
-            if (frame++ % renderFrameSkip == 0)
+            if (frame++ % renderFrameSkip == 0 && hasTile == true)
             {
                 yield return null;
                 var progress = 0.5f + (float)y / maxMapSize / 2;
@@ -209,34 +221,45 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < roomIndexList.Count; i++)
         {
             var nowRoomsCenter = rooms[roomIndexList[i]].Center;
-            for (var j = 0; j < Random.Range(1, rooms[roomIndexList[i]].RoomSize / (4 * 4 - 1)); j++)
+            for (var j = 0; j < Random.Range(1,3); j++)
             {
                 var mob = Instantiate(mobList[Random.Range(0, mobList.Count)]);
-                var max = new Vector2(rooms[roomIndexList[i]].size.x / 2, rooms[roomIndexList[i]].size.y / 2);
-                mob.transform.position = new Vector3(nowRoomsCenter.x * floorSize + Random.Range(-max.x, max.x), 0
-                , nowRoomsCenter.y * floorSize + Random.Range(-max.y, max.y));
+                var max = new Vector2(rooms[roomIndexList[i]].size.x * 2, rooms[roomIndexList[i]].size.y * 2);
+                mob.transform.position = new Vector3(nowRoomsCenter.x * floorSize + Random.Range(-max.x, max.x) * floorSize, 0
+                , nowRoomsCenter.y * floorSize + Random.Range(-max.y, max.y) * floorSize);
                 if (mob.GetComponent<NavMeshAgent>() != null)
                 {
                     mob.GetComponent<NavMeshAgent>().enabled = true;
                 }
+                var mobS = mob.GetComponent<Monster>();
+                var dungeonLv = floor +3;
+                mobS.ud.MaxHp = Mathf.RoundToInt((float)mobS.ud.MaxHp/mobS.ud.Lv*dungeonLv);
+                mobS.ud.MaxMp = Mathf.RoundToInt((float)mobS.ud.MaxMp/mobS.ud.Lv*dungeonLv);
+                mobS.ud.Gold = Mathf.RoundToInt((float)mobS.ud.Gold/mobS.ud.Lv*dungeonLv);
+                mobS.ud.Atk = Mathf.RoundToInt((float)mobS.ud.Atk/mobS.ud.Lv*dungeonLv);
+                mobS.ud.Def = Mathf.RoundToInt((float)mobS.ud.Def/mobS.ud.Lv*dungeonLv);
+                mobS.ud.Exp = Mathf.RoundToInt((float)mobS.ud.Exp/mobS.ud.Lv*dungeonLv);
+                mobS.ud.HpRatio = 1f;
+                mobS.ud.MpRatio = 1f;
+                mobS.ud.Lv = dungeonLv;
+
             }
         }
-        /*
-        //필수 음식 대 생성
-        Item item = new Item(5, 1);
-        gm.SpawnItem(rooms[Random.Range(0, rooms.Count)].center, item);
-        itemAndMobCount--;
-        //4층 마다 필수적으로 무기를 하나 생성한다.
-        if (nowFloor % 4 == 0)
-        {
-            gm.SpawnEquipItemWithFloor(RandomMove1Block(rooms[Random.Range(0, rooms.Count)].center));
-            itemAndMobCount--;
-        }
+        //아이템 드랍상자설치
         for (int i = 0; i < itemAndMobCount - 1; i++)
         {
-            gm.SpawnItemWithFloor(RandomMove1Block(rooms[Random.Range(0, rooms.Count)].center));
+            var nowRoomsCenter = rooms[roomIndexList[i]].Center;
+            var itembox = Instantiate(chest);
+            var max = new Vector2(rooms[roomIndexList[i]].size.x / 2-1, rooms[roomIndexList[i]].size.y / 2-1);
+            var items = new List<Item>();
+            items.Add(ItemManager.Instance.CodeToItem(Random.Range(1, 6)));
+            if(Random.Range(0,2) == 0) items.Add(ItemManager.Instance.CodeToItem(Random.Range(1, 6)));
+            if(Random.Range(0,2) == 0) items.Add(ItemManager.Instance.CodeToItem(Random.Range(1, 6)));
+            if(Random.Range(0,2) == 0) items.Add(ItemManager.Instance.CodeToItem(Random.Range(1, 6)));
+            itembox.GetComponent<DungeonChest>().Items = items;
+            itembox.transform.position = new Vector3(nowRoomsCenter.x * floorSize + Random.Range(-max.x, max.x) * floorSize, 0
+            , nowRoomsCenter.y * floorSize + Random.Range(-max.y, max.y) * floorSize);
         }
-        */
         //계단 설치하기 플레이어 스폰지점 제외
         var rand = Random.Range(0, rooms.Count);
         while (startRoomIndex == rand) rand = Random.Range(0, rooms.Count);

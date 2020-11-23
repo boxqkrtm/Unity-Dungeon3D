@@ -507,8 +507,8 @@ MonoBehaviour:
     maxHp: 60
     maxMp: 100
     lv: 3
-    atk: 15
-    def: 8
+    atk: 49
+    def: 13
     resistFire: 63
     resistIce: 0
     resistLight: 0
