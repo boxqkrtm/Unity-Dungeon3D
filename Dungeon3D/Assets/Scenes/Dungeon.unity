@@ -266,7 +266,7 @@ MonoBehaviour:
   mobList:
   - {fileID: 1608995890421214714, guid: 8870b0b2f5b2d2c4cb2711e8d7fea15b, type: 3}
   - {fileID: 6353436452397112558, guid: 7971e382ced56924799db0fd3fa26b0d, type: 3}
-  floor: 5
+  floor: 1
 --- !u!4 &872191842
 Transform:
   m_ObjectHideFlags: 0
