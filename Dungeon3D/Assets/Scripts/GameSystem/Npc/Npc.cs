@@ -38,7 +38,10 @@ public class Npc : MonoBehaviour
     {
         var result = talks[tempNpcData].Execute(nmgr.OptionNumber);
         if (result.nextState >= 0)
+        {
+            SEManager.Instance.Play(SEManager.Instance.buttonSE);
             tempNpcData = result.nextState;
+        }
         else if (result.nextState <= -2)
         {
             //상태를 변경하지 않고 임의 함수를 실행
@@ -101,6 +104,7 @@ public class Npc : MonoBehaviour
         InputManager.Instance.InputStop();
         EffectManager.Instance.LockCameraTargetEffect(transform, new Vector3(0, 4.38f, -6.37f), 18f);
         LookPlayer();//플레이어를 바라봄
+        SEManager.Instance.Play(SEManager.Instance.buttonSE);
     }
 
     protected void TalkingStop()
@@ -109,6 +113,7 @@ public class Npc : MonoBehaviour
         InputManager.Instance.InputStart();
         EffectManager.Instance.UnLockCameraTargetEffect();
         NpcManager.Instance.CloseInteractWindow();
+        SEManager.Instance.Play(SEManager.Instance.closeSE);
     }
 
 }

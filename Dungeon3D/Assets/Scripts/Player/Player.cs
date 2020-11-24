@@ -139,11 +139,11 @@ public class Player : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.forward, out hit, 15f))
                 {
-                    Debug.Log("hit");
+                    //Debug.Log("hit");
                 }
                 else
                 {
-                    Debug.Log("no hit");
+                    //Debug.Log("no hit");
                     continue;
                 }
 
@@ -243,6 +243,7 @@ public class Player : MonoBehaviour
     public void Dash()
     {
         isSprint = true;
+        SEManager.Instance.Play(SEManager.Instance.sprintSE);
     }
     public void DashOff()
     {
@@ -252,6 +253,7 @@ public class Player : MonoBehaviour
     //검 공격 연산
     public void AttackEvent()//공격 애니메이션 중 피격 판정이 일어나야 할 시점에 호출됨
     {
+        SEManager.Instance.Play(SEManager.Instance.slashSE);
         mySwordHitbox.enabled = false;
         mySwordHitbox.enabled = true;
         mySwordTrail.GetComponent<TrailRenderer>().emitting = true;
@@ -374,6 +376,7 @@ public class Player : MonoBehaviour
             if (befHp - nowHp != 1)
             {
                 animator.SetTrigger("TriggerTakeDamage");
+                SEManager.Instance.Play(SEManager.Instance.takehitSE);
                 takeDamegeAnimCoolDownTimer = takeDamageAnimCoolDown;
             }
         }

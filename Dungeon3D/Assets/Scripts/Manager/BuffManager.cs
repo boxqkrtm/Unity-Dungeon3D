@@ -14,6 +14,9 @@ public class BuffManager : MonoBehaviour
 
     //icon
     public Sprite fireIcon;
+    public Sprite iceIcon;
+    public Sprite poisonIcon;
+    public Sprite lightningIcon;
     public Sprite dashPotionIcon;
     public Sprite respawnBuffIcon;
 
@@ -92,6 +95,12 @@ public class BuffManager : MonoBehaviour
                 return dashPotionIcon;
             case BuffIcon.RespawnBuffIcon:
                 return respawnBuffIcon;
+            case BuffIcon.IceIcon:
+                return iceIcon;
+            case BuffIcon.LightningIcon:
+                return lightningIcon;
+            case BuffIcon.PoisonIcon:
+                return poisonIcon;
         }
         return null;
     }
@@ -100,5 +109,6 @@ public class BuffManager : MonoBehaviour
 
 public enum BuffIcon
 {
-    FireIcon, DashPotionIcon, RespawnBuffIcon
+    FireIcon, DashPotionIcon, RespawnBuffIcon,
+    IceIcon, LightningIcon, PoisonIcon
 }

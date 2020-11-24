@@ -28,8 +28,12 @@ public class DroppedItem : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            var bef = itemData.ItemAmount;
             itemData.ItemAmount = InventoryManager.Instance.GetItem(itemData);
-            //Debug.Log("hit remain " + itemData.ItemAmount);
+                if(bef != itemData.ItemAmount)
+            {
+                SEManager.Instance.Play(SEManager.Instance.buttonSE);
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ public class ShopBuyAlert : MonoBehaviour
         amountSlider.value = 1;
         mainText.text = item.ItemName + "을 구매하시겠습니까?";
         SliderOnChange();
+        SEManager.Instance.Play(SEManager.Instance.buttonSE);
     }
     public void SliderOnChange()
     {
@@ -52,6 +53,7 @@ public class ShopBuyAlert : MonoBehaviour
                 buyItem.ItemAmount = amount;
                 InventoryManager.Instance.GetItem(buyItem);
                 transform.GetChild(0).gameObject.SetActive(false);
+                SEManager.Instance.Play(SEManager.Instance.buttonSE);
             }
             else
             {
@@ -66,5 +68,6 @@ public class ShopBuyAlert : MonoBehaviour
     public void Cancel()
     {
         transform.GetChild(0).gameObject.SetActive(false);
+        SEManager.Instance.Play(SEManager.Instance.closeSE);
     }
 }

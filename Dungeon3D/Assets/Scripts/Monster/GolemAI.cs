@@ -75,10 +75,18 @@ public class GolemAI : MonsterAI
         if (timer >= 10f)
         {
             state = MonsterAIState.Idle;
+            timer = 0;
             if (BossSkillRoutine != null)
+            {
+
                 StopCoroutine(BossSkillRoutine);
+                BossSkillRoutine = null;
+            }
             if (BossAroundDamageRoutine != null)
+            {
                 StopCoroutine(BossAroundDamageRoutine);
+                BossAroundDamageRoutine = null;
+            }
         }
         else
         {
@@ -93,7 +101,10 @@ public class GolemAI : MonsterAI
     Coroutine BossAroundDamageRoutine = null;
     IEnumerator BossSkillMissile()
     {
-        yield return new WaitForSeconds(1f);
+        while(true)
+        {
+
+        yield return new WaitForSeconds(0.5f);
         {
             var obj = Instantiate(missale, transform.position, Quaternion.identity);
             var objs = obj.GetComponent<MagicMissale>();
@@ -115,6 +126,7 @@ public class GolemAI : MonsterAI
             objs.attackDamage = monster.ud.Atk;
             objs.target = GameManager.Instance.PlayerObj.transform.position;
         }
+        }
     }
     IEnumerator BossAroundDamage()
     {
@@ -133,6 +145,12 @@ public class GolemAI : MonsterAI
 
     public override void OnDead()
     {
-
+        StartCoroutine(End());
+    }
+    IEnumerator End()
+    {
+        EffectManager.Instance.StopEffect(5f);
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.MoveScene("End",Vector3.zero);
     }
 }

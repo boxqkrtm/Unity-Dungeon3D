@@ -45,6 +45,7 @@ public class EffectManager : MonoBehaviour
     public void CreateHitSwordEffect(Vector3 position)
     {
         Instantiate(hitSwordEffect, position, Quaternion.identity);
+        SEManager.Instance.Play(SEManager.Instance.hitSE);
     }
 
     public void CreateMobDespawnEffect(Vector3 position)
@@ -72,6 +73,7 @@ public class EffectManager : MonoBehaviour
     {
         var a = Instantiate(levelUpEffect, pos, Quaternion.Euler(-90f, 0, 0));
         a.transform.SetParent(GameManager.Instance.PlayerObj.transform);
+        SEManager.Instance.Play(SEManager.Instance.levelupSE);
     }
 
     public void CreateDashBoostEffect(Vector3 pos)

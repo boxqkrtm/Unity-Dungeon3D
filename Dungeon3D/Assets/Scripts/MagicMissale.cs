@@ -10,47 +10,69 @@ public class MagicMissale : MonoBehaviour
     Material m;
     void Start()
     {
-        m = GetComponent<MeshRenderer>().material;
+        m = transform.GetChild(0).GetComponent<MeshRenderer>().material;
         StartCoroutine(AutoDestroy());
+        StartCoroutine(Shot());
     }
     IEnumerator AutoDestroy()
     {
-        yield return null;
         while (m.color.a > 0)
         {
+        yield return null;
             Color c = m.color;
-            c.a -= Time.deltaTime / 2;
+            c.a -= Time.deltaTime / 5;
             m.color = c;
         }
-        yield return new WaitForSeconds(5f);
         Destroy(gameObject);
     }
-    void Update()
+    IEnumerator Shot()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * 5f);
-        transform.LookAt(target);
-        Debug.Log(Vector3.Distance(GameManager.Instance.PlayerObj.transform.position, transform.position));
-        if (Vector3.Distance(GameManager.Instance.PlayerObj.transform.position, transform.position) <= 1f)
+        //위로 솟음
+        var randx = Random.Range(-1f, 1f);
+        var randz = Random.Range(-1f, 1f);
+        while(transform.position.y < 4f)
         {
-            GameManager.Instance.PlayerScript.TakeDamage(attackType, attackDamage);
-            Buff buff = null;
-            switch (attackType)
+            yield return null;
+            var pos = transform.position;
+            pos.y += 1f * Time.deltaTime * 12f;
+            pos.x += 1f * Time.deltaTime * randx;
+            pos.z += 1f * Time.deltaTime * randz;
+            transform.position = pos;
+        }
+        SEManager.Instance.Play(SEManager.Instance.shotSE);
+        //내려꽂음
+        while(true)
+        {
+            yield return null;
+            transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * 20f);
+            transform.LookAt(target);
+            if (Vector3.Distance(GameManager.Instance.PlayerObj.transform.position, transform.position) <= 1f)
             {
-                case AttackType.Fire:
-                    buff = new Buff("화상", BuffType.Hp, AttackType.Fire, BuffIcon.FireIcon, attackDamage / 5, 3.0f);
-                    break;
-                case AttackType.Ice:
-                    buff = new Buff("냉기", BuffType.Speed, AttackType.Ice, BuffIcon.FireIcon, attackDamage / 5, 3.0f);
-                    break;
-                case AttackType.Light:
-                    buff = new Buff("감전", BuffType.Speed, AttackType.Light, BuffIcon.FireIcon, attackDamage / 5, 3.0f);
-                    break;
-                case AttackType.Poison:
-                    buff = new Buff("독", BuffType.Hp, AttackType.Poison, BuffIcon.FireIcon, attackDamage / 5, 10.0f);
-                    break;
+                Buff buff = null;
+                switch (attackType)
+                {
+                    case AttackType.Fire:
+                        buff = new Buff("화상", BuffType.Hp, AttackType.Fire, BuffIcon.FireIcon, -attackDamage / 5, 3.0f);
+                        SEManager.Instance.Play(SEManager.Instance.fireSE);
+                        break;
+                    case AttackType.Ice:
+                        buff = new Buff("냉기", BuffType.Speed, AttackType.Ice, BuffIcon.IceIcon, 0.8f, 3.0f);
+                        SEManager.Instance.Play(SEManager.Instance.iceSE);
+                        break;
+                    case AttackType.Light:
+                        buff = new Buff("감전", BuffType.Speed, AttackType.Light, BuffIcon.LightningIcon, 0.8f, 3.0f);
+                        SEManager.Instance.Play(SEManager.Instance.lightningSE);
+                        break;
+                    case AttackType.Poison:
+                        buff = new Buff("독", BuffType.Hp, AttackType.Poison, BuffIcon.PoisonIcon, -attackDamage / 5, 10.0f);
+                        SEManager.Instance.Play(SEManager.Instance.poisonSE);
+                        break;
+                }
+                GameManager.Instance.PlayerScript.TakeDamage(attackType, attackDamage);
+                GameManager.Instance.PlayerScript.TakeSpecial(buff, 1f);
+                //타격
+                Destroy(gameObject);
             }
-            GameManager.Instance.PlayerScript.TakeSpecial(buff, 0.5f);
-            //타격
         }
     }
 }

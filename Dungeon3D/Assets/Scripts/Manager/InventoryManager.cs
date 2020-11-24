@@ -82,9 +82,12 @@ public class InventoryManager : MonoBehaviour
         }
         inventoryUI.transform.localScale = endSize;
         OpenInvAnimRoutine = null;
+        SEManager.Instance.Play(SEManager.Instance.buttonSE);
     }
     IEnumerator CloseInvAnim()
     {
+        if(inventoryUI.activeSelf == true)
+        SEManager.Instance.Play(SEManager.Instance.closeSE);
         UIUpdate();
         yield return null;
         var startSize = Vector3.one;
@@ -171,6 +174,7 @@ public class InventoryManager : MonoBehaviour
     public void UseItem(int a)
     {
         HideItemInfo();
+        SEManager.Instance.Play(SEManager.Instance.useSE);
         //장비칸에서 더블클릭 한 경우 장착 해제
         if (a <= -2)
         {

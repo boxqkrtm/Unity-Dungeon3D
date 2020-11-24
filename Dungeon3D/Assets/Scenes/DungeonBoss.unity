@@ -2201,10 +2201,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1263180890589761708, guid: 55d23cad49449f448b1a70c66fe0dac7,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1263180890589761708, guid: 55d23cad49449f448b1a70c66fe0dac7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 55d23cad49449f448b1a70c66fe0dac7,
         type: 3}
       propertyPath: m_Name
       value: Statue_Horse (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 55d23cad49449f448b1a70c66fe0dac7,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935405175537820606, guid: 55d23cad49449f448b1a70c66fe0dac7,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935405175537820606, guid: 55d23cad49449f448b1a70c66fe0dac7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55d23cad49449f448b1a70c66fe0dac7, type: 3}
@@ -2500,6 +2525,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a278f35399373794b941c6685c65d376,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a278f35399373794b941c6685c65d376,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a278f35399373794b941c6685c65d376, type: 3}
 --- !u!1001 &142881150
@@ -2718,6 +2753,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Trap_spikes
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 77fb512a5a581d342b82bd96c034cdb5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 77fb512a5a581d342b82bd96c034cdb5,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77fb512a5a581d342b82bd96c034cdb5, type: 3}
@@ -6388,6 +6433,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Table_Big
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8887ae0e985e887479f6a2ea391bcc94,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8887ae0e985e887479f6a2ea391bcc94,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8887ae0e985e887479f6a2ea391bcc94, type: 3}
 --- !u!1001 &328561427
@@ -8979,10 +9034,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1263180890589761708, guid: 55d23cad49449f448b1a70c66fe0dac7,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1263180890589761708, guid: 55d23cad49449f448b1a70c66fe0dac7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 55d23cad49449f448b1a70c66fe0dac7,
         type: 3}
       propertyPath: m_Name
       value: Statue_Horse
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 55d23cad49449f448b1a70c66fe0dac7,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935405175537820606, guid: 55d23cad49449f448b1a70c66fe0dac7,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935405175537820606, guid: 55d23cad49449f448b1a70c66fe0dac7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55d23cad49449f448b1a70c66fe0dac7, type: 3}
@@ -11970,6 +12050,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pedestal2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b57a604e5e22ee946b32734e86457f74,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b57a604e5e22ee946b32734e86457f74,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b57a604e5e22ee946b32734e86457f74, type: 3}
 --- !u!1001 &651246212
@@ -12555,6 +12645,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Vase
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4f26200724eb2874287496816a4330b7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4f26200724eb2874287496816a4330b7,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f26200724eb2874287496816a4330b7, type: 3}
@@ -21390,6 +21490,133 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1080955356}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1082248372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1082248374}
+  - component: {fileID: 1082248373}
+  m_Layer: 0
+  m_Name: MusMus-BGM-053-boss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1082248373
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082248372}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 95573c1ada907f94baba0ddac4078e97, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1082248374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082248372}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1086576722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29752,6 +29979,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pedestal2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b57a604e5e22ee946b32734e86457f74,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b57a604e5e22ee946b32734e86457f74,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b57a604e5e22ee946b32734e86457f74, type: 3}
 --- !u!1001 &1554488459
@@ -30420,6 +30657,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floor_BricksSeparate2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f8f9ab1f4c9151c40bd86889538cbc5c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f8f9ab1f4c9151c40bd86889538cbc5c,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8f9ab1f4c9151c40bd86889538cbc5c, type: 3}
@@ -32852,6 +33099,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Chair
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bdda5332bb3ed924997b04c77bfa9b45,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bdda5332bb3ed924997b04c77bfa9b45,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdda5332bb3ed924997b04c77bfa9b45, type: 3}
@@ -41326,6 +41583,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Acceleration
       value: 99999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122147175017401392, guid: 3a3d16037dac63b46a6570ff186a9f19,
+        type: 3}
+      propertyPath: ud.hp
+      value: 5000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a3d16037dac63b46a6570ff186a9f19, type: 3}

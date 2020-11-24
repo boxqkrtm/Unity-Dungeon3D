@@ -209,7 +209,7 @@ public class GameManager : MonoBehaviour
             pscript.ud.Location = new Vector3Data(defaultLocation);
             SaveGame();
             StopAutoSave();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            MoveScene("MainTown", new Vector3(21.7f,-0.02f,-39.7f));
         }
         else
         {
