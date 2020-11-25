@@ -59,6 +59,17 @@ public class MonsterAI : MonoBehaviour
 
     void Think()
     {
+        if(PlayerDistance > 10f)
+        {
+            for(var i =0;i<3;i++)
+                transform.Find("SimpleMobInfoCanvas").GetChild(i).gameObject.SetActive(false);
+        }
+        else
+        {
+            for(var i =0;i<3;i++)
+                transform.Find("SimpleMobInfoCanvas").GetChild(i).gameObject.SetActive(true);
+
+        }
         if (state == MonsterAIState.Idle)
         {
             Idle();

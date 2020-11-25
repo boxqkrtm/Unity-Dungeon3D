@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 //기본 불속성의 슬라임
 public class GolemAI : MonsterAI
@@ -151,6 +152,14 @@ public class GolemAI : MonsterAI
     {
         EffectManager.Instance.StopEffect(5f);
         yield return new WaitForSeconds(1f);
-        GameManager.Instance.MoveScene("End",Vector3.zero);
+        
+        var ps = InputManager.Ps;
+        var location = new Vector3(21.76715f, -0.02960289f, -39.73073f);
+        ps.Disable();
+        GameManager.Instance.StopAutoSave();
+        GameManager.Instance.PlayerScript.ud.Location = new Vector3Data(location);
+        GameManager.Instance.PlayerScript.ud.SceneName = "mainTown";
+        GameManager.Instance.SaveGame();
+        SceneManager.LoadScene("End");
     }
 }

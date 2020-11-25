@@ -226,7 +226,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 904981357}
-  m_Father: {fileID: 562007958}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -599,10 +599,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 194871351}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &794982499
 GameObject:
@@ -974,7 +973,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1473424636
 GameObject:
@@ -1045,7 +1044,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 3
-  m_Text: "\uB9C8\uC744\uC744 \uB458\uB7EC\uC2FC \uBCBD\uC740 \uAE68\uC84C\uB2E4.\n\n-\uAC1C\uBC1C/\uAE30\uD68D-\n\uC774\uC601\uC6C5\n\n-\uC5EC\uB7EC\uAC00\uC9C0
+  m_Text: "\uB358\uC804 \uCD5C\uD558\uCE35\uC758 \uACE8\uB818\uC744 \uC4F0\uB7EC\uB728\uB9AC\uACE0\n\uB9C8\uC744\uC744
+    \uB458\uB7EC\uC2FC \uBCBD\uC740 \uAE68\uC84C\uB2E4.\n\n-\uAC1C\uBC1C/\uAE30\uD68D-\n\uC774\uC601\uC6C5\n\n-\uC5EC\uB7EC\uAC00\uC9C0
     \uBC30\uACBD\uC74C\uC545 \uC18C\uC2A4 \uBC0F \uBC84\uD2BC \uD6A8\uACFC\uC74C-\nMusmus\n\n-\uAE30\uD0C0
     \uD6A8\uACFC\uC74C freesound.org-\nTaira Komori\npotentjello\nzeffon\nwobesound\ndoudar41\nEminYildirim\nqubodup\nash_rez\njivatma07\ngprosser\nRobinhood76\npotentjello\n-UnityAssetStore\r-\nLeon
     LEE\r\nJean Moreno (JMO)\r\nDungeon Mason\r\nPolygon Blacksmith\r\nEmacEArt\r\nasoliddev\r\n\n-EtcAsset\r-\noveractiongamestudio.com\r\nImitationStudios.com\r\ngithub.com/keijiro/KinoMotion\r\npatreon.com/quaternius\n\n-Fin-"
@@ -1195,7 +1195,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1982086559
 GameObject:
@@ -1322,7 +1322,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2020452644
 GameObject:
@@ -1358,7 +1358,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 679.61, y: -1163}
+  m_AnchoredPosition: {x: 692.97, y: -857}
   m_SizeDelta: {x: 871.80164, y: 288.8177}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2020452646
