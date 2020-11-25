@@ -21,6 +21,7 @@ public class DungeonChest : MonoBehaviour
     {
         yield return null;
         GetComponent<Animator>().SetBool("OpenChest", true);
+        SEManager.Instance.Play(SEManager.Instance.openChestSE);
         yield return new WaitForSeconds(1f);
         if (isManualSpawn == false)
         {

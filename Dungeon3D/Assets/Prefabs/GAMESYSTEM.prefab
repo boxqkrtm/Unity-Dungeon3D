@@ -4546,6 +4546,7 @@ MonoBehaviour:
   closeSE: {fileID: 8300000, guid: 951aae8aa4d332745b5ae74ed83105d8, type: 3}
   slashSE: {fileID: 8300000, guid: 96283bfb99bf011478ab55dde99bd7b8, type: 3}
   useSE: {fileID: 8300000, guid: 72785fadb55ce8a469c3e6023f862afe, type: 3}
+  openChestSE: {fileID: 8300000, guid: 3d03953f4e6466c4c931a4d3f89e9d88, type: 3}
   se: {fileID: 1488065515848351497, guid: 9e445630a8b5d6043888a8fedc1a3ce4, type: 3}
 --- !u!82 &3363374986571942077
 AudioSource:

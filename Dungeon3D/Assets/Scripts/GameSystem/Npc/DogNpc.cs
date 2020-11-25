@@ -73,11 +73,11 @@ public class DogNpc : Npc
         else if (state <= -7 && state >= -10)//퀘스트 완료 처리
         {
             var selectedQuest = quests[(state * -1) - 7];
-            //퀘스트 받기 처리
             tempNpcData = 5;
             talks[5].mainText = "다 구해왔구나 자 여기\n";
             talks[5].mainText += QuestManager.Instance.GetQuestCompleteInfoStr(selectedQuest);
             QuestManager.Instance.PlayerClearQuest(selectedQuest);
+            SEManager.Instance.Play(SEManager.Instance.levelupSE);
             if (selectedQuest.Id == 1)
             {
                 AlertManager.Instance.AddGameLog("운송수단이 복구되어 상점을 이용 할 수 있게 되었다.");

@@ -186,7 +186,7 @@ public class Quest
         {
             var item = ItemManager.Instance.CodeToItem(ItemCode);
             item.ItemAmount = this.ItemAmount;
-            InventoryManager.Instance.GetItem(item);
+            EffectManager.Instance.CreateDroppedItem(GameManager.Instance.PlayerObj.transform.position, item);
         }
         //경험치 지급
         ps.ud.Exp += Exp;
