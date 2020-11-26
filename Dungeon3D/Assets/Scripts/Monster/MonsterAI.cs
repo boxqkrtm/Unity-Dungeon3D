@@ -5,7 +5,7 @@ using UnityEngine;
 #pragma warning disable CS0108 // 멤버가 상속된 멤버를 숨깁니다. new 키워드가 없습니다.
 public enum MonsterAIState
 {
-    Idle, Chase, Attack, RandomMove, BossSkill
+    Idle, Chase, Attack, RandomMove, BossSkill, BossSkill2
 }
 public class MonsterAI : MonoBehaviour
 {
@@ -59,14 +59,14 @@ public class MonsterAI : MonoBehaviour
 
     void Think()
     {
-        if(PlayerDistance > 10f)
+        if (PlayerDistance > 10f)
         {
-            for(var i =0;i<3;i++)
+            for (var i = 0; i < 3; i++)
                 transform.Find("SimpleMobInfoCanvas").GetChild(i).gameObject.SetActive(false);
         }
         else
         {
-            for(var i =0;i<3;i++)
+            for (var i = 0; i < 3; i++)
                 transform.Find("SimpleMobInfoCanvas").GetChild(i).gameObject.SetActive(true);
 
         }
@@ -80,6 +80,7 @@ public class MonsterAI : MonoBehaviour
         else if (state == MonsterAIState.Attack) Attack();
         else if (state == MonsterAIState.RandomMove) RandomMove();
         else if (state == MonsterAIState.BossSkill) BossSkill();
+        else if (state == MonsterAIState.BossSkill2) BossSkill2();
     }
 
     virtual public void OnDead() { }
@@ -88,4 +89,5 @@ public class MonsterAI : MonoBehaviour
     virtual public void Attack() { }
     virtual public void RandomMove() { }
     virtual public void BossSkill() { }
+    virtual public void BossSkill2() { }
 }

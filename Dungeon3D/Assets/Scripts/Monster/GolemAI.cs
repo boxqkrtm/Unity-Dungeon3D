@@ -8,7 +8,9 @@ using UnityEngine.SceneManagement;
 public class GolemAI : MonsterAI
 {
     public GameObject missale;
-    public GameObject warningAlert;
+    public GameObject warningBossSkillAlert;
+    public GameObject warningSpaceAlert;
+    public GameObject beam;
     NavMeshAgent agent;
     NavMeshAgent Agent
     {
@@ -29,7 +31,7 @@ public class GolemAI : MonsterAI
         state = MonsterAIState.Chase;
         timer += Time.deltaTime;
         if (timer >= 10f) { state = MonsterAIState.BossSkill; timer = 0f; }
-        if (timer >= 7f) { warningAlert.SetActive(true); } else warningAlert.SetActive(false);
+        if (timer >= 7f) { warningBossSkillAlert.SetActive(true); } else warningBossSkillAlert.SetActive(false);
     }
 
     public override void Chase()
@@ -44,7 +46,7 @@ public class GolemAI : MonsterAI
             state = MonsterAIState.Attack;
         timer += Time.deltaTime;
         if (timer >= 10f) { state = MonsterAIState.BossSkill; timer = 0f; }
-        if (timer >= 7f) { warningAlert.SetActive(true); } else warningAlert.SetActive(false);
+        if (timer >= 7f) { warningBossSkillAlert.SetActive(true); } else warningBossSkillAlert.SetActive(false);
     }
 
     public override void Attack()
@@ -57,7 +59,7 @@ public class GolemAI : MonsterAI
             state = MonsterAIState.Chase;
         timer += Time.deltaTime;
         if (timer >= 10f) { state = MonsterAIState.BossSkill; timer = 0f; }
-        if (timer >= 7f) { warningAlert.SetActive(true); } else warningAlert.SetActive(false);
+        if (timer >= 7f) { warningBossSkillAlert.SetActive(true); } else warningBossSkillAlert.SetActive(false);
     }
 
     public void AnimAttackSucceed()
@@ -73,9 +75,9 @@ public class GolemAI : MonsterAI
     {
         timer += Time.deltaTime;
         monster.animator.SetTrigger("TriggerIdle");
-        if (timer >= 10f)
+        if (timer >= 5f)
         {
-            state = MonsterAIState.Idle;
+            state = MonsterAIState.BossSkill2;
             timer = 0;
             if (BossSkillRoutine != null)
             {
@@ -97,36 +99,110 @@ public class GolemAI : MonsterAI
                 BossAroundDamageRoutine = StartCoroutine(BossAroundDamage());
         }
     }
+    public override void BossSkill2()
+    {
+        timer += Time.deltaTime;
+        monster.animator.SetTrigger("TriggerIdle");
+        if (timer >= 2.1f)
+        {
+            state = MonsterAIState.Idle;
+            timer = 0;
+            beam.SetActive(false);
+            if (BossSkillRoutine != null)
+            {
+                StopCoroutine(BossSkillRoutine);
+                BossSkillRoutine = null;
+            }
+            if (BossAroundDamageRoutine != null)
+            {
+                StopCoroutine(BossAroundDamageRoutine);
+                BossAroundDamageRoutine = null;
+            }
+        }
+        else
+        {
+
+            if (BossSkillRoutine == null)
+                BossSkillRoutine = StartCoroutine(BossSkillBeam());
+            if (BossAroundDamageRoutine == null)
+                BossAroundDamageRoutine = StartCoroutine(BossAroundDamage());
+        }
+    }
+    IEnumerator BossSkillBeam()
+    {
+        beam.SetActive(true);
+        var zeroPos = transform.position;
+        zeroPos.y = 2f;
+        Vector3 target = zeroPos;
+        float deltaTime = 0;
+        beam.GetComponent<Lazer>().start = zeroPos;
+        SEManager.Instance.Play(SEManager.Instance.lazerSE);
+        while (2f >= deltaTime)
+        {
+            yield return null;
+            deltaTime += Time.deltaTime;
+            var playerPos = GameManager.Instance.PlayerObj.transform.position;
+            playerPos.y = 0;
+            target.y = 0;
+            target = Vector3.Lerp(target, playerPos, Time.deltaTime * 7f);
+            if (Vector3.Distance(target, playerPos) <= 0.5f)
+            {
+                GameManager.Instance.PlayerScript.TakeDamage(AttackType.Light, Mathf.RoundToInt(monster.ud.Atk * 1.5f));
+                yield return new WaitForSeconds(0.5f);
+            }
+            var tempTarget = target;
+            tempTarget.y = 1f;
+            beam.GetComponent<Lazer>().target = tempTarget;
+        }
+        beam.SetActive(false);
+
+    }
 
     Coroutine BossSkillRoutine = null;
     Coroutine BossAroundDamageRoutine = null;
     IEnumerator BossSkillMissile()
     {
-        while(true)
+        for (var j = 0; j < 4; j++)
         {
-
-        yield return new WaitForSeconds(0.5f);
-        {
-            var obj = Instantiate(missale, transform.position, Quaternion.identity);
-            var objs = obj.GetComponent<MagicMissale>();
-            switch (Random.Range(0, 4))
+            var deltax = Random.Range(-1f, 1f);
+            var deltaz = Random.Range(-1f, 1f);
+            var delta = new Vector3(deltax, 0, deltaz);
+            var playerPos = GameManager.Instance.PlayerObj.transform.position;
+            for (var i = 0; i < 4; i++)
+                Instantiate(warningSpaceAlert, playerPos + delta * i, Quaternion.identity);
+            for (var i = 0; i < 4; i++)
             {
-                case 0:
-                    objs.attackType = AttackType.Fire;
-                    break;
-                case 1:
-                    objs.attackType = AttackType.Ice;
-                    break;
-                case 2:
-                    objs.attackType = AttackType.Light;
-                    break;
-                case 3:
-                    objs.attackType = AttackType.Poison;
-                    break;
+                var obj = Instantiate(missale, transform.position, Quaternion.identity);
+                var objs = obj.GetComponent<MagicMissale>();
+                switch (j)
+                {
+                    case 0:
+                        objs.attackType = AttackType.Fire;
+                        objs.color = Color.red;
+                        break;
+                    case 1:
+                        objs.attackType = AttackType.Ice;
+                        objs.color = Color.blue;
+                        break;
+                    case 2:
+                        objs.attackType = AttackType.Light;
+                        objs.color = Color.yellow;
+                        break;
+                    case 3:
+                        objs.attackType = AttackType.Poison;
+                        objs.color = Color.green;
+                        break;
+                }
+                objs.attackDamage = monster.ud.Atk;
+                objs.target = playerPos + delta * i;
+                Instantiate(warningSpaceAlert, objs.target, Quaternion.identity);
+                yield return new WaitForSeconds(0.1f);
             }
-            objs.attackDamage = monster.ud.Atk;
-            objs.target = GameManager.Instance.PlayerObj.transform.position;
+            yield return new WaitForSeconds(0.7f);
         }
+        while (true)
+        {
+            yield return null;
         }
     }
     IEnumerator BossAroundDamage()
@@ -152,7 +228,7 @@ public class GolemAI : MonsterAI
     {
         EffectManager.Instance.StopEffect(5f);
         yield return new WaitForSeconds(1f);
-        
+
         var ps = InputManager.Ps;
         var location = new Vector3(21.76715f, -0.02960289f, -39.73073f);
         ps.Disable();

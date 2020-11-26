@@ -57,7 +57,10 @@ public class Skill
                     break;
             }
         }
-        else return;
+        else
+        {
+            AlertManager.Instance.AddGameLog($"쿨타임이 {skillDelayTimer.ToString("F1")}초 남았습니다.");
+        }
     }
     #endregion
     #region Resource For Skill

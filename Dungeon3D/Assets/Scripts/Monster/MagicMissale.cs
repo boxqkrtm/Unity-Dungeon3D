@@ -8,6 +8,7 @@ public class MagicMissale : MonoBehaviour
     public int attackDamage;
     public Vector3 target;
     Material m;
+    public Color color;
     void Start()
     {
         m = transform.GetChild(0).GetComponent<MeshRenderer>().material;
@@ -18,10 +19,10 @@ public class MagicMissale : MonoBehaviour
     {
         while (m.color.a > 0)
         {
-        yield return null;
-            Color c = m.color;
-            c.a -= Time.deltaTime / 5;
-            m.color = c;
+            yield return null;
+            Color c = color;
+            color.a -= Time.deltaTime / 5;
+            m.color = color;
         }
         Destroy(gameObject);
     }

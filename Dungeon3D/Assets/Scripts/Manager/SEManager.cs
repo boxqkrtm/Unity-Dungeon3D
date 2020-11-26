@@ -9,6 +9,7 @@ public class SEManager : MonoBehaviour
     public AudioClip slashSE;
     public AudioClip useSE;
     public AudioClip openChestSE;
+    public AudioClip lazerSE;
     public GameObject se;
     private static SEManager instance = null;
     public static SEManager Instance

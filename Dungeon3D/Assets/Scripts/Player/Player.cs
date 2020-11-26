@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     float sprintMultiplyer = 1.5f;
     float isAttackAble = 0; //0이상시 공격 판정 가능상태
-    float takeDamageAnimCoolDown = 0.5f;
+    float takeDamageAnimCoolDown = 2f;
     float takeDamegeAnimCoolDownTimer = 0f;
     float sprintBoosting = 0f;
     float sprintBoostingCooldownTimer = 0f;
@@ -80,7 +80,9 @@ public class Player : MonoBehaviour
         RunCoolDown();
         //사망 시 또는 피격 모션 중 경직
         if (ud.Hp == 0 || animator.GetCurrentAnimatorStateInfo(0).IsName("GetHit_SwordShield"))
-        { rb.velocity = Vector3.zero; isAttackAble = 0f; return; }
+        {
+            rb.velocity = Vector3.zero; isAttackAble = 0f; return;
+        }
 
         //공격 모션 중 이동 불가능
         if (!(animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack01_SwordShield") ||
@@ -371,13 +373,16 @@ public class Player : MonoBehaviour
     public void OnHpChanged()
     {
         var nowHp = ud.Hp;
-        if (befHp > nowHp && takeDamegeAnimCoolDownTimer <= 0f)
+        if (befHp > nowHp)
         {
             if (befHp - nowHp != 1)
             {
-                animator.SetTrigger("TriggerTakeDamage");
+                if (takeDamegeAnimCoolDownTimer <= 0f)
+                {
+                    animator.SetTrigger("TriggerTakeDamage");
+                    takeDamegeAnimCoolDownTimer = takeDamageAnimCoolDown;
+                }
                 SEManager.Instance.Play(SEManager.Instance.takehitSE);
-                takeDamegeAnimCoolDownTimer = takeDamageAnimCoolDown;
             }
         }
         befHp = nowHp;

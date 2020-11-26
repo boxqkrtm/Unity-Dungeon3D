@@ -563,7 +563,7 @@ public class UnitData
         items = new List<Item>();
         quests = new List<Quest>();
         skills = new List<Skill>();
-        skills.Add(new Skill("파이널 슬래시", 1, 5, SkillFunction.Skill1, 5f, 50));
+        if (isEnemy == false) skills.Add(new Skill("파이널 슬래시", 1, 5, SkillFunction.Skill1, 5f, 150));
         if (isEnemy == false && Items.Count == 0)
         {
             //플레이어를 처음 생성하면서 아이템 공간이 0일 때
