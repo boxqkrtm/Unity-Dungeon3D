@@ -12,6 +12,7 @@ public class InventorySlotListener : MonoBehaviour, IDragHandler, IEndDragHandle
     public int myIndex;
     int mouseButton = -1;
     private Vector3 initLocation;
+    public bool isDragAble = true;
     public virtual void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.clickCount % 2 == 0)
@@ -22,6 +23,7 @@ public class InventorySlotListener : MonoBehaviour, IDragHandler, IEndDragHandle
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (isDragAble == false) return;
         InventoryManager.Instance.floatItem.SetActive(true);
         InventoryManager.Instance.floatItem.transform.GetChild(0).gameObject.SetActive(false);
         InventoryManager.Instance.floatItem.GetComponent<Image>().sprite = transform.GetChild(0).GetComponent<Image>().sprite;
@@ -56,6 +58,7 @@ public class InventorySlotListener : MonoBehaviour, IDragHandler, IEndDragHandle
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (isDragAble == false) return;
         transform.GetChild(0).gameObject.SetActive(true);
         transform.GetChild(1).gameObject.SetActive(true);
         InventoryManager.Instance.floatItem.SetActive(false);
@@ -97,7 +100,6 @@ public class InventorySlotListener : MonoBehaviour, IDragHandler, IEndDragHandle
     {
         windowParent = transform.GetChild(0).gameObject.GetComponent<RectTransform>();
         initLocation = Vector3.zero;
-
     }
 
     // Update is called once per frame
@@ -107,11 +109,13 @@ public class InventorySlotListener : MonoBehaviour, IDragHandler, IEndDragHandle
     }
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (isDragAble == false) return;
         InventoryManager.Instance.HideItemInfo();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (isDragAble == false) return;
         InventoryManager.Instance.ShowItemInfo(myIndex);
     }
 }

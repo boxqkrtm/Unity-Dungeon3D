@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour
     #region Variable
     //prefab
     public GameObject itemSlot;
+    public GameObject quickSlot;
     public Sprite blank;
 
     //sprite
@@ -123,19 +124,27 @@ public class InventoryManager : MonoBehaviour
     #region InvItemBehavior
     public void SwapItem(int a, int b)
     {
+        Debug.Log("swap" + a.ToString() + " " + b.ToString());
         if (a <= -2)
         {
             //장비류 아이템 해제
             UseItem(a);
             return;
         }
-        if (b <= -2)
+        if (b <= -2 && b >= -4)
         {
             //장비류 아이템은 장착
             UseItem(a);
             return;
         }
-        if (a == b) return;//이게 없으면 같은 자리로 옮기면 아이템 사라짐
+        if (b <= -5 && b >= -8)
+        {
+            //퀵슬롯 설정
+            PlayerScript.ud.quickslot[b * -1 - 5] = a;
+            UIUpdate();
+            return;
+        }
+            if (a == b) return;//이게 없으면 같은 자리로 옮기면 아이템 사라짐
         if (PlayerItems[a].ItemCode == PlayerItems[b].ItemCode &&
             PlayerItems[b].ItemMaxAmount != PlayerItems[b].ItemAmount)
         {
@@ -173,8 +182,8 @@ public class InventoryManager : MonoBehaviour
     }
     public void UseItem(int a)
     {
+        if (a>=0 && PlayerScript.ud.Items[a].ItemCode == 0) return;
         HideItemInfo();
-        SEManager.Instance.Play(SEManager.Instance.useSE);
         //장비칸에서 더블클릭 한 경우 장착 해제
         if (a <= -2)
         {
@@ -183,6 +192,7 @@ public class InventoryManager : MonoBehaviour
                 if (GetItem(PlayerScript.ud.Weapon, false) == 0)
                 {
                     PlayerScript.ud.Weapon = new Item(0);
+                    SEManager.Instance.Play(SEManager.Instance.useSE);
                     UIUpdate();
                     return;
                 }
@@ -197,6 +207,7 @@ public class InventoryManager : MonoBehaviour
                 if (GetItem(PlayerScript.ud.Armor, false) == 0)
                 {
                     PlayerScript.ud.Armor = new Item(0);
+                    SEManager.Instance.Play(SEManager.Instance.useSE);
                     UIUpdate();
                     return;
                 }
@@ -211,6 +222,7 @@ public class InventoryManager : MonoBehaviour
                 if (GetItem(PlayerScript.ud.Accessory, false) == 0)
                 {
                     PlayerScript.ud.Accessory = new Item(0);
+                    SEManager.Instance.Play(SEManager.Instance.useSE);
                     UIUpdate();
                     return;
                 }
@@ -219,6 +231,12 @@ public class InventoryManager : MonoBehaviour
                     //장비 해제 실패 인벤토리 가득 참
                     return;
                 }
+            }
+            if(a <= -5)
+            {
+                UseItem(PlayerScript.ud.quickslot[a * -1 - 5]);
+                SEManager.Instance.Play(SEManager.Instance.useSE);
+                return;
             }
         }
 
@@ -250,6 +268,7 @@ public class InventoryManager : MonoBehaviour
 
         //아이템을 사용 처리함
         PlayerItems[a].Use(PlayerScript.ud);
+        SEManager.Instance.Play(SEManager.Instance.useSE);
         UIUpdate();
     }
     public void DropItem(int a)
@@ -274,9 +293,9 @@ public class InventoryManager : MonoBehaviour
     {
         if (playerInv == null) 
         {
-            Debug.Log("Player");
+            //Debug.Log("Player");
             playerInv = PlayerScript.ud.Items;
-            Debug.Log("아이템 " + getItem.ItemAmount + "개 들어옴");
+            //Debug.Log("아이템 " + getItem.ItemAmount + "개 들어옴");
         }
         Item item = new Item(getItem);
         if (item.ItemAmount == 0) { Debug.LogError("에러 아이템이 없음"); return 0; }
@@ -292,11 +311,11 @@ public class InventoryManager : MonoBehaviour
                 {
                     //아이템 코드가 같으면서 스택할 공간이 있는 경우
                     var spaceAmount = playerInv[i].ItemMaxAmount - playerInv[i].ItemAmount;//빈 공간 개수 계산
-                    Debug.Log(i.ToString() + " " + playerInv[i].ItemAmount.ToString()+"합칠 공간의 남은 공간" + spaceAmount.ToString()) ;
+                    //Debug.Log(i.ToString() + " " + playerInv[i].ItemAmount.ToString()+"합칠 공간의 남은 공간" + spaceAmount.ToString()) ;
                     if (spaceAmount >= remainItemAmount)
                     {
                         playerInv[i].ItemAmount += remainItemAmount;
-                        Debug.Log( "아이템이 완전히 합쳐짐");
+                        //Debug.Log( "아이템이 완전히 합쳐짐");
                         UIUpdate();
                         if (alert) AlertManager.Instance.AddGameLog(item.ItemName + " " + item.ItemAmount + "개 획득");
                         return 0;
@@ -317,7 +336,7 @@ public class InventoryManager : MonoBehaviour
         {
             if (playerInv[i].ItemCode == 0)
             {
-                Debug.Log("빈 공간에 나머지 아이템을 추가해서 넣음");
+                //Debug.Log("빈 공간에 나머지 아이템을 추가해서 넣음");
                 var temp = new Item(item);
                 if (remainItemAmount > temp.ItemMaxAmount)
                 {
@@ -433,6 +452,16 @@ public class InventoryManager : MonoBehaviour
 
             if (PlayerItems[i].ItemCode == 0) invSlots[i].GetComponent<InventorySlotListener>().enabled = false;
             else invSlots[i].GetComponent<InventorySlotListener>().enabled = true;
+        }
+        for (var i = 0; i < 4; i++)
+        {
+            var icon = PlayerItems[PlayerScript.ud.quickslot[i]].ItemIcon;
+            //아이콘
+            quickSlot.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = icon;
+            //수량
+            if (PlayerItems[PlayerScript.ud.quickslot[i]].ItemAmount <= 1)
+                quickSlot.transform.GetChild(i).GetChild(1).GetComponent<TextMeshProUGUI>().text = "";
+            else quickSlot.transform.GetChild(i).GetChild(1).GetComponent<TextMeshProUGUI>().text = PlayerItems[PlayerScript.ud.quickslot[i]].ItemAmount.ToString();
         }
         //장비
         eSword.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "";

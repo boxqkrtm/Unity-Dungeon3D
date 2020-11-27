@@ -91,7 +91,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""1"",
+                    ""name"": ""k1"",
                     ""type"": ""Button"",
                     ""id"": ""9d6e801e-4e2f-405b-a04a-e64200ac569f"",
                     ""expectedControlType"": ""Button"",
@@ -99,7 +99,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""2"",
+                    ""name"": ""k2"",
                     ""type"": ""Button"",
                     ""id"": ""b7f31659-078e-485b-a062-142718b118d2"",
                     ""expectedControlType"": ""Button"",
@@ -107,7 +107,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""3"",
+                    ""name"": ""k3"",
                     ""type"": ""Button"",
                     ""id"": ""313d6587-523a-46b1-94da-edaf64f14e97"",
                     ""expectedControlType"": ""Button"",
@@ -115,7 +115,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""4"",
+                    ""name"": ""k4"",
                     ""type"": ""Button"",
                     ""id"": ""9cc6895d-524f-411e-86e2-6c7eb8d72e13"",
                     ""expectedControlType"": ""Button"",
@@ -247,6 +247,17 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""d2c50793-7055-458d-aa4a-9c927366878f"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""f2f5e2cd-7119-43d9-a4f1-a2246d8ffc47"",
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
@@ -340,7 +351,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""1"",
+                    ""action"": ""k1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -351,7 +362,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""1"",
+                    ""action"": ""k1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -362,7 +373,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""2"",
+                    ""action"": ""k2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -373,7 +384,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""3"",
+                    ""action"": ""k3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -384,7 +395,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""4"",
+                    ""action"": ""k4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -426,10 +437,10 @@ public class @PlayerControl : IInputActionCollection, IDisposable
         m_Play_DashDown = m_Play.FindAction("DashDown", throwIfNotFound: true);
         m_Play_Skill1 = m_Play.FindAction("Skill1", throwIfNotFound: true);
         m_Play_SkillWindow = m_Play.FindAction("SkillWindow", throwIfNotFound: true);
-        m_Play__1 = m_Play.FindAction("1", throwIfNotFound: true);
-        m_Play__2 = m_Play.FindAction("2", throwIfNotFound: true);
-        m_Play__3 = m_Play.FindAction("3", throwIfNotFound: true);
-        m_Play__4 = m_Play.FindAction("4", throwIfNotFound: true);
+        m_Play_k1 = m_Play.FindAction("k1", throwIfNotFound: true);
+        m_Play_k2 = m_Play.FindAction("k2", throwIfNotFound: true);
+        m_Play_k3 = m_Play.FindAction("k3", throwIfNotFound: true);
+        m_Play_k4 = m_Play.FindAction("k4", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -488,10 +499,10 @@ public class @PlayerControl : IInputActionCollection, IDisposable
     private readonly InputAction m_Play_DashDown;
     private readonly InputAction m_Play_Skill1;
     private readonly InputAction m_Play_SkillWindow;
-    private readonly InputAction m_Play__1;
-    private readonly InputAction m_Play__2;
-    private readonly InputAction m_Play__3;
-    private readonly InputAction m_Play__4;
+    private readonly InputAction m_Play_k1;
+    private readonly InputAction m_Play_k2;
+    private readonly InputAction m_Play_k3;
+    private readonly InputAction m_Play_k4;
     public struct PlayActions
     {
         private @PlayerControl m_Wrapper;
@@ -505,10 +516,10 @@ public class @PlayerControl : IInputActionCollection, IDisposable
         public InputAction @DashDown => m_Wrapper.m_Play_DashDown;
         public InputAction @Skill1 => m_Wrapper.m_Play_Skill1;
         public InputAction @SkillWindow => m_Wrapper.m_Play_SkillWindow;
-        public InputAction @_1 => m_Wrapper.m_Play__1;
-        public InputAction @_2 => m_Wrapper.m_Play__2;
-        public InputAction @_3 => m_Wrapper.m_Play__3;
-        public InputAction @_4 => m_Wrapper.m_Play__4;
+        public InputAction @k1 => m_Wrapper.m_Play_k1;
+        public InputAction @k2 => m_Wrapper.m_Play_k2;
+        public InputAction @k3 => m_Wrapper.m_Play_k3;
+        public InputAction @k4 => m_Wrapper.m_Play_k4;
         public InputActionMap Get() { return m_Wrapper.m_Play; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -545,18 +556,18 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                 @SkillWindow.started -= m_Wrapper.m_PlayActionsCallbackInterface.OnSkillWindow;
                 @SkillWindow.performed -= m_Wrapper.m_PlayActionsCallbackInterface.OnSkillWindow;
                 @SkillWindow.canceled -= m_Wrapper.m_PlayActionsCallbackInterface.OnSkillWindow;
-                @_1.started -= m_Wrapper.m_PlayActionsCallbackInterface.On_1;
-                @_1.performed -= m_Wrapper.m_PlayActionsCallbackInterface.On_1;
-                @_1.canceled -= m_Wrapper.m_PlayActionsCallbackInterface.On_1;
-                @_2.started -= m_Wrapper.m_PlayActionsCallbackInterface.On_2;
-                @_2.performed -= m_Wrapper.m_PlayActionsCallbackInterface.On_2;
-                @_2.canceled -= m_Wrapper.m_PlayActionsCallbackInterface.On_2;
-                @_3.started -= m_Wrapper.m_PlayActionsCallbackInterface.On_3;
-                @_3.performed -= m_Wrapper.m_PlayActionsCallbackInterface.On_3;
-                @_3.canceled -= m_Wrapper.m_PlayActionsCallbackInterface.On_3;
-                @_4.started -= m_Wrapper.m_PlayActionsCallbackInterface.On_4;
-                @_4.performed -= m_Wrapper.m_PlayActionsCallbackInterface.On_4;
-                @_4.canceled -= m_Wrapper.m_PlayActionsCallbackInterface.On_4;
+                @k1.started -= m_Wrapper.m_PlayActionsCallbackInterface.OnK1;
+                @k1.performed -= m_Wrapper.m_PlayActionsCallbackInterface.OnK1;
+                @k1.canceled -= m_Wrapper.m_PlayActionsCallbackInterface.OnK1;
+                @k2.started -= m_Wrapper.m_PlayActionsCallbackInterface.OnK2;
+                @k2.performed -= m_Wrapper.m_PlayActionsCallbackInterface.OnK2;
+                @k2.canceled -= m_Wrapper.m_PlayActionsCallbackInterface.OnK2;
+                @k3.started -= m_Wrapper.m_PlayActionsCallbackInterface.OnK3;
+                @k3.performed -= m_Wrapper.m_PlayActionsCallbackInterface.OnK3;
+                @k3.canceled -= m_Wrapper.m_PlayActionsCallbackInterface.OnK3;
+                @k4.started -= m_Wrapper.m_PlayActionsCallbackInterface.OnK4;
+                @k4.performed -= m_Wrapper.m_PlayActionsCallbackInterface.OnK4;
+                @k4.canceled -= m_Wrapper.m_PlayActionsCallbackInterface.OnK4;
             }
             m_Wrapper.m_PlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -588,18 +599,18 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                 @SkillWindow.started += instance.OnSkillWindow;
                 @SkillWindow.performed += instance.OnSkillWindow;
                 @SkillWindow.canceled += instance.OnSkillWindow;
-                @_1.started += instance.On_1;
-                @_1.performed += instance.On_1;
-                @_1.canceled += instance.On_1;
-                @_2.started += instance.On_2;
-                @_2.performed += instance.On_2;
-                @_2.canceled += instance.On_2;
-                @_3.started += instance.On_3;
-                @_3.performed += instance.On_3;
-                @_3.canceled += instance.On_3;
-                @_4.started += instance.On_4;
-                @_4.performed += instance.On_4;
-                @_4.canceled += instance.On_4;
+                @k1.started += instance.OnK1;
+                @k1.performed += instance.OnK1;
+                @k1.canceled += instance.OnK1;
+                @k2.started += instance.OnK2;
+                @k2.performed += instance.OnK2;
+                @k2.canceled += instance.OnK2;
+                @k3.started += instance.OnK3;
+                @k3.performed += instance.OnK3;
+                @k3.canceled += instance.OnK3;
+                @k4.started += instance.OnK4;
+                @k4.performed += instance.OnK4;
+                @k4.canceled += instance.OnK4;
             }
         }
     }
@@ -624,9 +635,9 @@ public class @PlayerControl : IInputActionCollection, IDisposable
         void OnDashDown(InputAction.CallbackContext context);
         void OnSkill1(InputAction.CallbackContext context);
         void OnSkillWindow(InputAction.CallbackContext context);
-        void On_1(InputAction.CallbackContext context);
-        void On_2(InputAction.CallbackContext context);
-        void On_3(InputAction.CallbackContext context);
-        void On_4(InputAction.CallbackContext context);
+        void OnK1(InputAction.CallbackContext context);
+        void OnK2(InputAction.CallbackContext context);
+        void OnK3(InputAction.CallbackContext context);
+        void OnK4(InputAction.CallbackContext context);
     }
 }

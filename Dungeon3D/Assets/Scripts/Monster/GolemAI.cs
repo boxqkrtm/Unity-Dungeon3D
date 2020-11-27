@@ -135,11 +135,13 @@ public class GolemAI : MonsterAI
         zeroPos.y = 2f;
         Vector3 target = zeroPos;
         float deltaTime = 0;
+        float ddeltaTime = 0;
         beam.GetComponent<Lazer>().start = zeroPos;
         SEManager.Instance.Play(SEManager.Instance.lazerSE);
         while (2f >= deltaTime)
         {
             yield return null;
+            ddeltaTime += Time.deltaTime;
             deltaTime += Time.deltaTime;
             var playerPos = GameManager.Instance.PlayerObj.transform.position;
             playerPos.y = 0;
@@ -150,6 +152,12 @@ public class GolemAI : MonsterAI
                 GameManager.Instance.PlayerScript.TakeDamage(AttackType.Light, Mathf.RoundToInt(monster.ud.Atk * 1.5f));
                 yield return new WaitForSeconds(0.5f);
             }
+            if(ddeltaTime >= 0.1f)
+            {
+                EffectManager.Instance.CreateLazerGroundEffect(target);
+                ddeltaTime = 0f;
+            }
+            
             var tempTarget = target;
             tempTarget.y = 1f;
             beam.GetComponent<Lazer>().target = tempTarget;
@@ -164,9 +172,7 @@ public class GolemAI : MonsterAI
     {
         for (var j = 0; j < 4; j++)
         {
-            var deltax = Random.Range(-1f, 1f);
-            var deltaz = Random.Range(-1f, 1f);
-            var delta = new Vector3(deltax, 0, deltaz);
+            var delta =  GameManager.Instance.PlayerObj.transform.rotation * Vector3.forward * 2;
             var playerPos = GameManager.Instance.PlayerObj.transform.position;
             for (var i = 0; i < 4; i++)
                 Instantiate(warningSpaceAlert, playerPos + delta * i, Quaternion.identity);

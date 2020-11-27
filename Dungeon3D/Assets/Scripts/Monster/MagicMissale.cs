@@ -54,19 +54,23 @@ public class MagicMissale : MonoBehaviour
                 {
                     case AttackType.Fire:
                         buff = new Buff("화상", BuffType.Hp, AttackType.Fire, BuffIcon.FireIcon, -attackDamage / 5, 3.0f);
+                        EffectManager.Instance.CreateFireEffect(target);
                         SEManager.Instance.Play(SEManager.Instance.fireSE);
                         break;
                     case AttackType.Ice:
                         buff = new Buff("냉기", BuffType.Speed, AttackType.Ice, BuffIcon.IceIcon, 0.8f, 3.0f);
                         SEManager.Instance.Play(SEManager.Instance.iceSE);
+                        EffectManager.Instance.CreateIceEffect(target);
                         break;
                     case AttackType.Light:
                         buff = new Buff("감전", BuffType.Speed, AttackType.Light, BuffIcon.LightningIcon, 0.8f, 3.0f);
                         SEManager.Instance.Play(SEManager.Instance.lightningSE);
+                        EffectManager.Instance.CreateLightningEffect(target);
                         break;
                     case AttackType.Poison:
                         buff = new Buff("독", BuffType.Hp, AttackType.Poison, BuffIcon.PoisonIcon, -attackDamage / 5, 10.0f);
                         SEManager.Instance.Play(SEManager.Instance.poisonSE);
+                        EffectManager.Instance.CreatePoisonEffect(target);
                         break;
                 }
                 GameManager.Instance.PlayerScript.TakeDamage(attackType, attackDamage);

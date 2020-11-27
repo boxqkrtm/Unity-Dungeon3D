@@ -47,6 +47,10 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         StartCoroutine(DelayLoop());
     }
+    public void QuickItem(int index)
+    {
+        InventoryManager.Instance.UseItem(ud.quickslot[index]);
+    }
     public void InitUd()
     {
         ud.onHpChanged += OnHpChanged;

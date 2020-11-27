@@ -510,6 +510,9 @@ public class UnitData
         }
     }
     #endregion
+    #region quickslot
+    public int[] quickslot;
+    #endregion
     #region initializers
     public UnitData(bool isEnemy = true, string name = "",
     int hp = 1, int mp = 1, int exp = 0, int lv = 1
@@ -563,7 +566,15 @@ public class UnitData
         items = new List<Item>();
         quests = new List<Quest>();
         skills = new List<Skill>();
-        if (isEnemy == false) skills.Add(new Skill("파이널 슬래시", 1, 5, SkillFunction.Skill1, 5f, 150));
+        if (isEnemy == false)
+        {
+            skills.Add(new Skill("파이널 슬래시", 1, 5, SkillFunction.Skill1, 5f, 150));
+            quickslot = new int[4];
+            quickslot[0] = 0;
+            quickslot[1] = 1;
+            quickslot[2] = 2;
+            quickslot[3] = 3;
+        }
         if (isEnemy == false && Items.Count == 0)
         {
             //플레이어를 처음 생성하면서 아이템 공간이 0일 때

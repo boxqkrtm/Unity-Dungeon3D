@@ -21,7 +21,7 @@ public class SkeletonAI : MonsterAI
     public override void Idle()
     {
         monster.animator.SetTrigger("TriggerIdle");
-        if (PlayerDistance <= 8f)
+        if (PlayerDistance <= 14f)
             state = MonsterAIState.Chase;
     }
 
@@ -33,7 +33,7 @@ public class SkeletonAI : MonsterAI
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(target), 180 * Time.deltaTime);
         //rigidbody.velocity = new Vector3(target.x, 0f, target.z) * monster.ud.Speed;
         Agent.destination = PlayerPos;
-        if (PlayerDistance > 8f)
+        if (PlayerDistance > 14f)
             state = MonsterAIState.Idle;
         if (PlayerDistance < 3f)
             state = MonsterAIState.Attack;
@@ -53,7 +53,7 @@ public class SkeletonAI : MonsterAI
     {
         if (PlayerDistance <= 3f && monster.ud.Hp > 0)
         {
-            player.GetComponent<Player>().TakeDamage(AttackType.Fire, monster.ud.Atk);
+            player.GetComponent<Player>().TakeDamage(AttackType.None, monster.ud.Atk);
             EffectManager.Instance.CreateHitSwordEffect(PlayerPos);
         }
     }

@@ -78,7 +78,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "1",
+                    "name": "k1",
                     "type": "Button",
                     "id": "9d6e801e-4e2f-405b-a04a-e64200ac569f",
                     "expectedControlType": "Button",
@@ -86,7 +86,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "2",
+                    "name": "k2",
                     "type": "Button",
                     "id": "b7f31659-078e-485b-a062-142718b118d2",
                     "expectedControlType": "Button",
@@ -94,7 +94,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "3",
+                    "name": "k3",
                     "type": "Button",
                     "id": "313d6587-523a-46b1-94da-edaf64f14e97",
                     "expectedControlType": "Button",
@@ -102,7 +102,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "4",
+                    "name": "k4",
                     "type": "Button",
                     "id": "9cc6895d-524f-411e-86e2-6c7eb8d72e13",
                     "expectedControlType": "Button",
@@ -234,6 +234,17 @@
                 },
                 {
                     "name": "",
+                    "id": "d2c50793-7055-458d-aa4a-9c927366878f",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f2f5e2cd-7119-43d9-a4f1-a2246d8ffc47",
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
@@ -327,7 +338,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "1",
+                    "action": "k1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -338,7 +349,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "1",
+                    "action": "k1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -349,7 +360,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "2",
+                    "action": "k2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -360,7 +371,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "3",
+                    "action": "k3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -371,7 +382,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "4",
+                    "action": "k4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

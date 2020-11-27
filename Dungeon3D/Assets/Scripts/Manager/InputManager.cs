@@ -30,7 +30,7 @@ public class InputManager : MonoBehaviour
         }
         if (ps == null)
         {
-            ps = new PlayerControl();
+            ps = new PlayerControl();   
             ps.Play.Inventory.performed += ctx => InventoryManager.Instance.ToggleInventory();
             ps.Play.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
             ps.Play.Move.canceled += ctx => move = Vector2.zero;
@@ -55,6 +55,11 @@ public class InputManager : MonoBehaviour
             ps.Play.Skill1.performed += ctx => GameManager.Instance.PlayerObj.GetComponent<Player>().Skill1();
 
             ps.Play.SkillWindow.performed += ctx => GameManager.Instance.OpenSkillWindow();
+
+            ps.Play.k1.performed += ctx => GameManager.Instance.PlayerObj.GetComponent<Player>().QuickItem(0);
+            ps.Play.k2.performed += ctx => GameManager.Instance.PlayerObj.GetComponent<Player>().QuickItem(1);
+            ps.Play.k3.performed += ctx => GameManager.Instance.PlayerObj.GetComponent<Player>().QuickItem(2);
+            ps.Play.k4.performed += ctx => GameManager.Instance.PlayerObj.GetComponent<Player>().QuickItem(3);
         }
         ps.Play.Enable();
     }

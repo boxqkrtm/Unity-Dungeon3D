@@ -14,6 +14,12 @@ public class EffectManager : MonoBehaviour
     public GameObject hitFireEffect;
     public GameObject dashBoostEffect;
     public GameObject droppedItem;
+    public GameObject poisonEffect;
+    public GameObject lightningEffect;
+    public GameObject fireEffect;
+    public GameObject iceEffect;
+    public GameObject lazerGroundEffect;
+
     float itemDropPower = 8f;
 
     private static EffectManager instance = null;
@@ -91,6 +97,30 @@ public class EffectManager : MonoBehaviour
         dr.GetComponent<Rigidbody>().AddForce(power, ForceMode.VelocityChange);
         //Debug.Log(power);
     }
+
+    public void CreatePoisonEffect(Vector3 pos)
+    {
+        Instantiate(poisonEffect, pos, Quaternion.identity);
+    }
+
+    public void CreateLightningEffect(Vector3 pos)
+    {
+        Instantiate(lightningEffect, pos, Quaternion.identity);
+    }
+    public void CreateFireEffect(Vector3 pos)
+    {
+        Instantiate(fireEffect, pos, Quaternion.identity);
+    }
+    public void CreateIceEffect(Vector3 pos)
+    {
+        Instantiate(iceEffect, pos, Quaternion.identity);
+    }
+
+    public void CreateLazerGroundEffect(Vector3 pos)
+    {
+        Instantiate(lazerGroundEffect, pos, Quaternion.identity);
+    }
+
 
     public void StopEffect(float time = 0.09f)
     {
