@@ -170,6 +170,11 @@ public class Player : MonoBehaviour
                     GameManager.Instance.PlayerSwordHit(DashSkillminTarget, DashSkillminTarget.transform.position);
                 }
             }
+            else
+            {
+                var raw = transform.rotation * Vector3.forward * ud.Speed * 2;
+                rb.velocity = raw;
+            }
         }
         else
         {
