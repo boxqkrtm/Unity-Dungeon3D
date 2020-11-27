@@ -177,15 +177,15 @@ public class MapGenerator : MonoBehaviour
                 loadBar.fillAmount = progress;
             }
         }
-        for (var i = 0; i < navList.Count; i++)
-        {
-            //yield return null;
-            var progress = (float)(i + 1) / navList.Count;
-            //loadText.text = "Loading AI... " + Mathf.FloorToInt(progress * 100).ToString() + "%";
-            //loadBar.fillAmount = progress;
-            navList[i].BuildNavMesh();
-            break;//모든 바닥이 연결되어있어서 하나만 빌드하면 됨
-        }
+        //for (var i = 0; i < navList.Count; i++)
+        //{
+        //yield return null;
+        //var progress = (float)(i + 1) / navList.Count;
+        //loadText.text = "Loading AI... " + Mathf.FloorToInt(progress * 100).ToString() + "%";
+        //loadBar.fillAmount = progress;
+        navList[0].BuildNavMesh();
+            //break;//모든 바닥이 연결되어있어서 하나만 빌드하면 됨
+        //}
         loadingUI.SetActive(false);
 
         //스폰 룸 지정 및 플레이어 좌표 설정

@@ -23,7 +23,6 @@ public class GolemAI : MonsterAI
             return agent;
         }
     }
-    bool skillPattern = false;
     float timer = 0f;
     public override void Idle()
     {
@@ -106,19 +105,11 @@ public class GolemAI : MonsterAI
                 StopCoroutine(BossSkillRoutine);
                 BossSkillRoutine = null;
             }
-            if (BossAroundDamageRoutine != null)
-            {
-                StopCoroutine(BossAroundDamageRoutine);
-                BossAroundDamageRoutine = null;
-            }
         }
         else
         {
-
             if (BossSkillRoutine == null)
                 BossSkillRoutine = StartCoroutine(BossSkillBeam());
-            if (BossAroundDamageRoutine == null)
-                BossAroundDamageRoutine = StartCoroutine(BossAroundDamage());
         }
     }
     IEnumerator BossSkillBeam()
