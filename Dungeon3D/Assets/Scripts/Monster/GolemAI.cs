@@ -74,7 +74,7 @@ public class GolemAI : MonsterAI
     {
         timer += Time.deltaTime;
         monster.animator.SetTrigger("TriggerIdle");
-        if (timer >= 5f)
+        if (timer >= 7f)
         {
             state = MonsterAIState.BossSkill2;
             timer = 0;

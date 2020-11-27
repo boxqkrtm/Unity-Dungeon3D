@@ -250,7 +250,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    bool isDashPressed = false;
     public void Dash()
     {
         isSprint = true;
