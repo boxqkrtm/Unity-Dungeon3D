@@ -6,6 +6,6 @@ itemCode,itemIcon,itemName,itemDescription,itemType,itemPower,resistFire,resistI
 4,icon/4,화상 회복의 포션,즉시 화상으로 부터 벗어날 수 있다.,FireStatePotion,1,0,0,0,0,99,30
 5,icon/5,냉기 회복의 포션,즉시 냉기로부터 벗어날 수 있다.,IceStatePotion,1,0,0,0,0,99,30
 6,icon/6,독 회복의 포션,즉시 독으로부터 벗어날 수 있다.,PoisonStatePotion,1,0,0,0,0,99,30
-7,icon/7,체력 회복의 포션,즉시 체력 50을 회복할 수 있다.,HealPotion,50,0,0,0,0,99,8
+7,icon/7,체력 회복의 포션,즉시 체력 50을 회복할 수 있다.,HealPotion,100,0,0,0,0,99,8
 8,icon/8,신속의 포션,30초간 이동속도를 1.2배 빠르게 한다. (최고 2배),SpeedBuffPotion,1.2,0,0,0,0,99,50
 9,icon/9,마나 회복의 포션,즉시 마나 50을 회복할 수 있다.,HealMpPotion,50,0,0,0,0,99,8

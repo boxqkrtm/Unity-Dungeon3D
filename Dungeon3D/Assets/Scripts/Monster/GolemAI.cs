@@ -130,6 +130,7 @@ public class GolemAI : MonsterAI
     }
     IEnumerator BossSkillBeam()
     {
+        Vector3 tempTarget;
         beam.SetActive(true);
         var zeroPos = transform.position;
         zeroPos.y = 2f;
@@ -137,16 +138,25 @@ public class GolemAI : MonsterAI
         float deltaTime = 0;
         float ddeltaTime = 0;
         beam.GetComponent<Lazer>().start = zeroPos;
-        SEManager.Instance.Play(SEManager.Instance.lazerSE);
+        SEManager.Instance.Play(SEManager.Instance.lazerSE);    
+        var playerPos = GameManager.Instance.PlayerObj.transform.position;
+        playerPos.y = 0;
+        target.y = 0;
+        target = Vector3.Lerp(target, playerPos, 0.8f);
+        tempTarget = target;
+        tempTarget.y = 1f;
+        beam.GetComponent<Lazer>().target = tempTarget;
+
+        //yield return new WaitForSeconds(0.3f);
         while (2f >= deltaTime)
         {
             yield return null;
             ddeltaTime += Time.deltaTime;
             deltaTime += Time.deltaTime;
-            var playerPos = GameManager.Instance.PlayerObj.transform.position;
+            playerPos = GameManager.Instance.PlayerObj.transform.position;
             playerPos.y = 0;
             target.y = 0;
-            target = Vector3.Lerp(target, playerPos, Time.deltaTime * 7f);
+            target = Vector3.MoveTowards(target, playerPos, Time.deltaTime * 7.5f);
             if (Vector3.Distance(target, playerPos) <= 0.5f)
             {
                 GameManager.Instance.PlayerScript.TakeDamage(AttackType.Light, Mathf.RoundToInt(monster.ud.Atk * 1.5f));
@@ -158,7 +168,7 @@ public class GolemAI : MonsterAI
                 ddeltaTime = 0f;
             }
             
-            var tempTarget = target;
+            tempTarget = target;
             tempTarget.y = 1f;
             beam.GetComponent<Lazer>().target = tempTarget;
         }
@@ -176,6 +186,7 @@ public class GolemAI : MonsterAI
             var playerPos = GameManager.Instance.PlayerObj.transform.position;
             for (var i = 0; i < 4; i++)
                 Instantiate(warningSpaceAlert, playerPos + delta * i, Quaternion.identity);
+            yield return new WaitForSeconds(0.5f);
             for (var i = 0; i < 4; i++)
             {
                 var obj = Instantiate(missale, transform.position, Quaternion.identity);
