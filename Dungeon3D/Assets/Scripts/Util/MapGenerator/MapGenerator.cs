@@ -246,10 +246,10 @@ public class MapGenerator : MonoBehaviour
             var nowRoomsCenter = rooms[roomIndexList[i]].Center;
             var itembox = Instantiate(chest);
             var items = new List<Item>();
-            items.Add(ItemManager.Instance.CodeToItem(Random.Range(1, 6)));
-            if(Random.Range(0,2) == 0) items.Add(ItemManager.Instance.CodeToItem(Random.Range(4, 10)));
-            if(Random.Range(0,2) == 0) items.Add(ItemManager.Instance.CodeToItem(Random.Range(4, 10)));
-            if(Random.Range(0,2) == 0) items.Add(ItemManager.Instance.CodeToItem(Random.Range(4, 10)));
+            
+            for(var j = 0; j < Random.Range(1,5);j++)
+                items.Add(ItemManager.Instance.CodeToItem(Random.Range(4, 10)));
+
             itembox.GetComponent<DungeonChest>().Items = items;
             itembox.transform.position =  rooms[roomIndexList[i]].RandomInnerPos() * floorSize;
         }
