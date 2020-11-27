@@ -85,18 +85,11 @@ public class GolemAI : MonsterAI
                 StopCoroutine(BossSkillRoutine);
                 BossSkillRoutine = null;
             }
-            if (BossAroundDamageRoutine != null)
-            {
-                StopCoroutine(BossAroundDamageRoutine);
-                BossAroundDamageRoutine = null;
-            }
         }
         else
         {
             if (BossSkillRoutine == null)
                 BossSkillRoutine = StartCoroutine(BossSkillMissile());
-            if (BossAroundDamageRoutine == null)
-                BossAroundDamageRoutine = StartCoroutine(BossAroundDamage());
         }
     }
     public override void BossSkill2()
@@ -177,7 +170,6 @@ public class GolemAI : MonsterAI
     }
 
     Coroutine BossSkillRoutine = null;
-    Coroutine BossAroundDamageRoutine = null;
     IEnumerator BossSkillMissile()
     {
         for (var j = 0; j < 4; j++)
@@ -222,16 +214,6 @@ public class GolemAI : MonsterAI
             yield return null;
         }
     }
-    IEnumerator BossAroundDamage()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(0.1f);
-            if (PlayerDistance <= 5f && monster.ud.Hp > 0)
-                GameManager.Instance.PlayerScript.TakeDamage(AttackType.None, monster.ud.Atk / 100);
-        }
-    }
-
     public override void RandomMove()
     {
 
