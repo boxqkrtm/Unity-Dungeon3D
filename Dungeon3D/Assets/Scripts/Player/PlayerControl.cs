@@ -225,6 +225,17 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""451f38d4-f0b6-4423-b9ee-1c0490729fb1"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC+CONSOLE"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""39913eaa-4210-4488-a3eb-085c1839e18a"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -315,6 +326,17 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""c224e98a-d92c-4542-8e86-927cd9015480"",
                     ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC+CONSOLE"",
+                    ""action"": ""AttackOff"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bbff7a54-06c1-4688-b9d7-8389b1b4da48"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC+CONSOLE"",
