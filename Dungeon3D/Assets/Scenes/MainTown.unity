@@ -3297,6 +3297,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1533277139, guid: 45288819fde2143449a96207b14db0bb, type: 3}
+      propertyPath: talks.Array.data[1].options.Array.data[1].nextState
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1533277139, guid: 45288819fde2143449a96207b14db0bb, type: 3}
+      propertyPath: talks.Array.data[1].options.Array.data[0].nextState
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1533277139, guid: 45288819fde2143449a96207b14db0bb, type: 3}
+      propertyPath: blankObj
+      value: 
+      objectReference: {fileID: 8753970105909008781, guid: da2dd02d0e6239044a201709eb5c1f49,
+        type: 3}
     - target: {fileID: 2066896392038131574, guid: 45288819fde2143449a96207b14db0bb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14178,12 +14191,12 @@ PrefabInstance:
     - target: {fileID: 3234133879350940717, guid: e3ce138194115e44a985903bef0dcdaa,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -39.73073
       objectReference: {fileID: 0}
     - target: {fileID: 3234133879350940717, guid: e3ce138194115e44a985903bef0dcdaa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 21.76715
       objectReference: {fileID: 0}
     - target: {fileID: 3237866462462129381, guid: e3ce138194115e44a985903bef0dcdaa,
         type: 3}

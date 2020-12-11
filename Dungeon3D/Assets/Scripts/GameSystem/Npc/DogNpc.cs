@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class DogNpc : Npc
 {
+    public GameObject blankObj;
     override protected int NpcData
     {
         get { return gmgr.Nd.DogNpcStory; }
@@ -102,6 +103,13 @@ public class DogNpc : Npc
         {
             NpcManager.Instance.CloseShopWindow();
             tempNpcData = 2;
+        }
+        else if(state == -14)
+        {
+            var blank = Instantiate(blankObj);
+            blank.transform.position = new Vector3(-7.363151f, 0, -30.56463f);
+            EffectManager.Instance.LockCameraTargetEffect(blank.transform, new Vector3(0, 4.38f, -19.29f), 179.96f);
+            tempNpcData = 8;
         }
     }
 }

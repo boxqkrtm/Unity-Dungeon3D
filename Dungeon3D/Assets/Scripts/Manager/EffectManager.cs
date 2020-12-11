@@ -161,6 +161,17 @@ public class EffectManager : MonoBehaviour
             mainCamera.GetComponent<FollowPlayer>().targetCamRotationEulerY = targetCamRotationEulerY;
             mainCamera.GetComponent<FollowPlayer>().lockCameraControl = true;
         }
+        else
+        {
+            InventoryManager.Instance.CloseInventory();
+            isCamLock = true;
+
+            mainCamera.GetComponent<FollowPlayer>().targetTransform = t;
+
+            mainCamera.GetComponent<FollowPlayer>().locationDelta2 = locationDelta2;
+            mainCamera.GetComponent<FollowPlayer>().targetCamRotationEulerY = targetCamRotationEulerY;
+            mainCamera.GetComponent<FollowPlayer>().lockCameraControl = true;
+        }
     }
     public void UnLockCameraTargetEffect()
     {
