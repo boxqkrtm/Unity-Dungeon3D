@@ -291,6 +291,17 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""64116fb9-8fa1-4c5a-8efb-ab392ff11bef"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DashHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""fa5a0ea1-304e-41cc-8fcc-30468e746a08"",
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
@@ -304,6 +315,17 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""c7ba47b7-6863-46df-b08e-c76636754d5c"",
                     ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DashDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e16b5fb7-d6d3-475e-9b08-a68d6ed5b00e"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

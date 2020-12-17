@@ -30,6 +30,11 @@ public class Npc : MonoBehaviour
     void Update()
     {
         if (attackKey > 0) attackKey -= Time.deltaTime;
+        if (attackKey < 0)
+        {
+            attackKey += Time.deltaTime;
+            if (attackKey > 0) attackKey = 0;
+        }
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, targetRotation - modelRotation, 0), 2 * Time.deltaTime);
         if (isTalking == true) TalkingLoop();
     }
@@ -71,7 +76,8 @@ public class Npc : MonoBehaviour
 
     void AttackBtn(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {
-        attackKey += 0.1f;
+        if(InventoryManager.Instance.IsInventoryOpened() == false)
+            attackKey += 0.1f;
     }
     bool isTalking;
 
@@ -114,6 +120,7 @@ public class Npc : MonoBehaviour
         EffectManager.Instance.UnLockCameraTargetEffect();
         NpcManager.Instance.CloseInteractWindow();
         SEManager.Instance.Play(SEManager.Instance.closeSE);
+        attackKey = -1f;
     }
 
 }
